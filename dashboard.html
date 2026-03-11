@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SecureHub</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body
+    class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/30"
+  >
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 z-50 backdrop-blur-lg bg-white/80 border-b border-slate-200"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center"
+          >
+            <span class="text-white font-bold">S</span>
+          </div>
+
+          <span
+            class="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent"
+          >
+            SecureHub
+          </span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex items-center gap-3">
+            <div
+              class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white font-semibold"
+            >
+              JS
+            </div>
+
+            <span class="font-medium text-slate-700"> João Silva </span>
+          </div>
+
+          <button
+            id="logout"
+            class="border px-3 py-1 rounded-lg text-slate-600 hover:bg-slate-50"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+      <!-- HERO -->
+      <section
+        class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 text-white"
+      >
+        <h1 class="text-3xl font-bold">Olá, João! 👋</h1>
+
+        <p class="mt-2 text-blue-100">
+          Bem-vindo de volta! Gerencie sua conta com segurança.
+        </p>
+      </section>
+
+      <!-- GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- USER INFO -->
+        <div class="lg:col-span-2 bg-white rounded-2xl border p-6 shadow-sm">
+          <h2 class="text-lg font-semibold text-slate-800 mb-6">
+            Informações do Usuário
+          </h2>
+
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm text-slate-500">Nome</p>
+              <p class="font-medium text-slate-800">João Silva</p>
+            </div>
+
+            <div>
+              <p class="text-sm text-slate-500">Email</p>
+              <p class="font-medium text-slate-800">joao@email.com</p>
+            </div>
+
+            <div>
+              <p class="text-sm text-slate-500">Data de criação</p>
+              <p class="font-medium text-slate-800">15 de Janeiro, 2024</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD -->
+        <div class="bg-white rounded-2xl border p-6 shadow-sm">
+          <h2 class="text-lg font-semibold text-slate-800 mb-6">
+            Cartão de Crédito
+          </h2>
+
+          <div class="bg-slate-900 rounded-2xl p-6 text-white mb-6">
+            <p class="text-xl tracking-widest mb-4">•••• •••• •••• 4532</p>
+
+            <div class="flex justify-between">
+              <div>
+                <p class="text-xs text-slate-400">Titular</p>
+                <p>JOAO SILVA</p>
+              </div>
+
+              <div>
+                <p class="text-xs text-slate-400">Validade</p>
+                <p>12/27</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="border px-3 py-2 rounded-xl w-full mb-2">
+            Editar cartão
+          </button>
+
+          <button
+            class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full"
+          >
+            Remover cartão
+          </button>
+        </div>
+
+        <!-- CONFIGURAÇÕES -->
+        <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-slate-800 mb-6">
+            Configurações
+          </h2>
+
+          <div class="space-y-4">
+            <button
+              class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-slate-50"
+            >
+              <span class="font-medium text-slate-700"> Alterar senha </span>
+              <span>></span>
+            </button>
+
+            <div
+              class="flex items-center justify-between p-3 rounded-xl bg-slate-50"
+            >
+              <span class="font-medium text-slate-700"> Tema claro </span>
+
+              <button class="w-10 h-5 bg-gray-300 rounded-full"></button>
+            </div>
+
+            <div
+              class="flex items-center justify-between p-3 rounded-xl bg-slate-50"
+            >
+              <span class="font-medium text-slate-700"> Notificações </span>
+
+              <button class="w-10 h-5 bg-green-400 rounded-full"></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ATIVIDADES -->
+        <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-slate-800 mb-6">
+            Atividades Recentes
+          </h2>
+
+          <div class="space-y-4">
+            <div class="pb-4 border-b">
+              <p class="font-medium text-slate-700">Login realizado</p>
+              <p class="text-sm text-slate-500">Há 2 minutos</p>
+            </div>
+
+            <div class="pb-4 border-b">
+              <p class="font-medium text-slate-700">Cartão atualizado</p>
+              <p class="text-sm text-slate-500">Há 3 dias</p>
+            </div>
+
+            <div>
+              <p class="font-medium text-slate-700">Senha alterada</p>
+              <p class="text-sm text-slate-500">Há 1 semana</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      document.getElementById("logout").onclick = () => {
+        alert("Logout realizado");
+      };
+    </script>
+  </body>
+</html>
