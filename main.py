@@ -11,9 +11,3 @@ app.register_blueprint(dashboard_route) # registrando a rota de dashboard #
 
 
 app.run(debug=True) # rodando o flask em modo debug para não precisar reiniciar o servidor a cada alteração #
-
-
-
-
-# COLOCAR ROTA PELO URL_FOR NO HTML PARA EVITAR ERROS DE DIGITAÇÃO E FÁCIL MANUTENÇÃO #
-# EX: <a href="{{ url_for('NOME DA FUNÇÃO') }}" />
