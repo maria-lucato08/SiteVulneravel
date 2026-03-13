@@ -132,24 +132,5 @@
         </p>
       </div>
     </div>
-
-    <script>
-      document
-        .getElementById("signupForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const password = document.getElementById("password").value;
-          const confirm = document.getElementById("confirmPassword").value;
-
-          if (password !== confirm) {
-            alert("As senhas não coincidem");
-
-            return;
-          }
-
-          alert("Conta criada com sucesso!");
-        });
-    </script>
   </body>
 </html>
