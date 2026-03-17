@@ -47,7 +47,7 @@
           <p class="text-slate-500 mt-2">Entre na sua conta para continuar</p>
         </div>
 
-        <form id="loginForm" class="space-y-5">
+        <form id="loginForm" class="space-y-5" method="GET" action="{{url_for('login_route.login_get_user')}}">
           <!-- EMAIL -->
           <div class="space-y-2">
             <label for="email" class="text-sm font-medium text-slate-700">
@@ -103,7 +103,7 @@
           </div>
         </div>
 
-        <a href="#">
+        <a href="{{url_for('signup_route.signup_page')}}">
           <button
             class="w-full h-12 border-2 border-slate-200 rounded-xl font-semibold hover:border-blue-300 hover:bg-blue-50"
           >
@@ -119,15 +119,5 @@
         <a href="#" class="text-blue-600 hover:underline">Política</a>
       </p>
     </div>
-
-    <script>
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          alert("Login realizado");
-        });
-    </script>
   </body>
 </html>
