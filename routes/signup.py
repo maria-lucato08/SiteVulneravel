@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from database.users import USERS
+from database.models.users import User_info
 
 signup_route = Blueprint('signup_route', __name__)
 
@@ -10,12 +10,9 @@ def signup_page():
 @signup_route.route('/signup', methods=['POST']) # acessar a página com o método POST #
 def signup_register():
     data = request.form # obtém os dados do formulário enviado #
-    new_user = {
-        'id': len(USERS) + 1, 
-        'name': data['name'],
-        'email': data['email'],
-        'password': data['password']
-    }
-    USERS.append(new_user) # adiciona o novo usuário à lista de usuários #
-   
-    return USERS # Retorna uma mensagem de sucesso após o envio do formulário #
+    new_user = User_info.create(
+        name = data['name'],
+        email = data['email'],
+        password = data['password']
+    ) # cria novo user # 
+    return 'Usuário cadastrado com sucesso!'
