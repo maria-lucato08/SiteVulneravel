@@ -47,7 +47,7 @@
           <p class="text-slate-500 mt-2">Entre na sua conta para continuar</p>
         </div>
 
-        <form id="loginForm" class="space-y-5">
+        <form id="loginForm" class="space-y-5" method="GET" action="{{url_for('login_route.login_get_user')}}">
           <!-- EMAIL -->
           <div class="space-y-2">
             <label for="email" class="text-sm font-medium text-slate-700">

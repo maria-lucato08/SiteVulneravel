@@ -15,4 +15,4 @@ def signup_register():
         email = data['email'],
         password = data['password']
     ) # cria novo user # 
-    return 'Usuário cadastrado com sucesso!'
+    return render_template('login.html')
