@@ -9,9 +9,9 @@ def all_configs(app):
     db_configs()
 
 def routes_configs(app):
-    app.register_blueprint(signup_route) # registrando a rota de signup #
-    app.register_blueprint(login_route) # registrando a rota de login #
-    app.register_blueprint(dashboard_route) # registrando a rota de dashboard #
+    app.register_blueprint(signup_route) # registrando rotas de signup #
+    app.register_blueprint(login_route) # registrando rotas de login #
+    app.register_blueprint(dashboard_route) # registrando rotas de dashboard #
 
 
 def db_configs():
