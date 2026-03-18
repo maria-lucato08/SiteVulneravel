@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request 
+from flask import Blueprint, redirect, render_template, request, url_for 
 from database.models.users import User_info
 
 login_route = Blueprint('login_route', __name__)
@@ -20,4 +20,4 @@ def login_get_user():
     elif userVetification.password != password:
         return 'senha errada'
     else:
-        return render_template('dashboard.html')
+        return redirect(url_for('dashboard_route.dashboard', id=userVetification.id))
