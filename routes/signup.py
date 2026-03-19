@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 from database.models.users import User_info
 
 signup_route = Blueprint('signup_route', __name__)
@@ -15,4 +15,4 @@ def signup_register():
         email = data['email'],
         password = data['password']
     ) # cria novo user # 
-    return render_template('login.html')
+    return redirect(url_for('login_route.login')) # redireciona para a página de login após o cadastro #
