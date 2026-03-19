@@ -32,6 +32,6 @@ def dashboard_new_card():
     )
     return redirect(url_for('dashboard_route.dashboard', id=gettingUser.id))
 
-@dashboard_route.route('dashboard', methods=['DELETE'])
+@dashboard_route.route('/dashboard', methods=['DELETE'])
 def dashboard_delete_card():
     pass

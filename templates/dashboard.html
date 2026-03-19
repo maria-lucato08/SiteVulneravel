@@ -155,16 +155,16 @@
             {% endfor %}
 
             <div class="settings-content hidden"> 
-              <button class="border px-3 py-2 rounded-xl w-full mb-2" onclick="openModal()">
+              <button class="border px-3 py-2 rounded-xl w-full mb-2" onclick="openModalAdicionar()">
                 Adicionar cartão
               </button>
 
             <!-- MODAL ADD CARTÃO -->
-            <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
-              <div id="modal-content" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
+            <div id="modalAdicionar" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+              <div id="modal-content-adicionar" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
                 
                 <!-- BOTÃO FECHAR -->
-                <button onclick="closeModal()" 
+                <button onclick="closeModalAdicionar()" 
                   class="absolute top-3 right-3 text-gray-500">
                   ✕
                 </button>
@@ -237,17 +237,17 @@
               </div>
             </div>
 
-              <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full" onclick="openModal()"> 
+              <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full" onclick="openModalDeletar()"> 
                 Remover cartão
               </button>
             </div>
 
-             <!-- MODAL ADD CARTÃO -->
-            <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
-              <div id="modal-content" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
+             <!-- MODAL DELETAR CARTÃO -->
+            <div id="modalDeletar" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+              <div id="modal-content-deletar" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
                 
                 <!-- BOTÃO FECHAR -->
-                <button onclick="closeModal()" 
+                <button onclick="closeModalDeletar()" 
                   class="absolute top-3 right-3 text-gray-500">
                   ✕
                 </button>
@@ -376,8 +376,9 @@
               const settingsCard = document.querySelectorAll('.settings-card');
               const textTests = document.querySelectorAll('.text-test');
               const hover = document.querySelectorAll('.hover');
-              const modalContent = document.getElementById('modal-content');
-   
+              const modalAdicionarContent = document.getElementById('modal-content-adicionar');
+              const modalDeletarContent = document.getElementById('modal-content-deletar');  
+
               if (dark) {
                 body.classList.add('bg-slate-900', 'text-slate-100');
                 body.classList.remove('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
@@ -404,9 +405,14 @@
                   el.classList.add('text-slate-100');
                 });
 
-                  modalContent.classList.remove('bg-white');
-                  modalContent.classList.add('bg-[#232336]', 'text-slate-100');
-                  document.querySelectorAll('#modal input').forEach(input => {
+                [modalAdicionarContent, modalDeletarContent].forEach(modal => {
+                if (!modal) return;
+
+                modal.classList.remove('bg-white');
+                modal.classList.add('bg-[#232336]', 'text-slate-100');
+                });
+
+                document.querySelectorAll('#modalAdicionar input, #modalDeletar input').forEach(input => {
                   input.classList.add('bg-slate-800', 'text-white', 'border-slate-600');
                 });
 
@@ -450,12 +456,16 @@
                   el.classList.add('text-slate-700');
                 });
 
-                 modalContent.classList.remove('bg-[#232336]', 'text-slate-100');
-                 modalContent.classList.add('bg-white');
+                [modalAdicionarContent, modalDeletarContent].forEach(modal => {
+                if (!modal) return;
 
-                 document.querySelectorAll('#modal input').forEach(input => {
-                input.classList.remove('bg-slate-800', 'text-white', 'border-slate-600');
-              });
+                modal.classList.remove('bg-[#232336]', 'text-slate-100');
+                modal.classList.add('bg-white');
+                });
+
+                document.querySelectorAll('#modalAdicionar input, #modalDeletar input').forEach(input => {
+                  input.classList.remove('bg-slate-800', 'text-white', 'border-slate-600');
+                });
 
               }
         
@@ -501,25 +511,46 @@
               });
             });
 
-            // Modal
-              const modal = document.getElementById("modal");
+            // Modals
+              const modalAdicionar = document.getElementById("modalAdicionar");
 
-              function openModal() {
-                modal.classList.remove("hidden");
-                modal.classList.add("flex");
+              function openModalAdicionar() {
+                modalAdicionar.classList.remove("hidden");
+                modalAdicionar.classList.add("flex");
               }
 
-              function closeModal() {
-                modal.classList.add("hidden");
-                modal.classList.remove("flex");
-                modal.querySelectorAll("input").forEach(input => input.value = ""); // limpa os campos
+              function closeModalAdicionar() {
+                modalAdicionar.classList.add("hidden");
+                modalAdicionar.classList.remove("flex");
+                modalAdicionar.querySelectorAll("input").forEach(input => input.value = ""); // limpa os campos
               }
 
               // fechar clicando fora
-              modal.addEventListener("click", (e) => {
-                if (e.target === modal) {
+              modalAdicionar.addEventListener("click", (e) => {
+                if (e.target === modalAdicionar) {
                   
                   closeModal();
+                }
+              });
+
+              const modalDeletar = document.getElementById("modalDeletar");
+
+              function openModalDeletar() {
+                modalDeletar.classList.remove("hidden");
+                modalDeletar.classList.add("flex");
+              }
+
+              function closeModalDeletar() {
+                modalDeletar.classList.add("hidden");
+                modalDeletar.classList.remove("flex");
+                modalDeletar.querySelectorAll("input").forEach(input => input.value = ""); // limpa os campos
+              }
+
+              // fechar clicando fora
+              modalDeletar.addEventListener("click", (e) => {
+                if (e.target === modalDeletar) {
+                  
+                  closeModalDeletar();
                 }
               });
 
