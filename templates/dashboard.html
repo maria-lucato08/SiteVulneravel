@@ -10,12 +10,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body
+    <body
     class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/30"
   >
     <!-- HEADER -->
     <header
-      class="sticky top-0 z-50 backdrop-blur-lg bg-white/80 border-b border-slate-200"
+      class="sticky top-0 z-50 backdrop-blur-lg border-b border-slate-200"
     >
       <div
         class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16"
@@ -24,7 +24,7 @@
           <div
             class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center"
           >
-            <span class="text-white font-bold">S</span>
+            <span class="font-bold">S</span>
           </div>
 
           <span
@@ -34,21 +34,21 @@
           </span>
         </div>
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 text-test">
           <div class="hidden sm:flex items-center gap-3">
             <div
-              class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white font-semibold"
+              class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-test font-semibold"
             >
               JS
             </div>
 
-            <span class="font-medium text-slate-700"> João Silva </span>
+            <span class="font-medium"> João Silva </span>
           </div>
 
           <a href="{{ url_for('login_route.login') }}" class="ml-4">
             <button
               id="logout"
-              class="border px-3 py-1 rounded-lg text-slate-600 hover:bg-slate-50"
+              class="border px-3 py-1 rounded-lg text-slate-300 hover:bg-slate-50"
             >
               Logout
             </button></a>
@@ -72,36 +72,48 @@
       <!-- GRID -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- USER INFO -->
-        <div class="lg:col-span-2 bg-white rounded-2xl border p-6 shadow-sm">
-          <h2 class="text-lg font-semibold text-slate-800 mb-6">
-            Informações do Usuário
-          </h2>
+        <div class="lg:col-span-2 bg-white rounded-2xl border p-6 shadow-sm settings-card">
+          <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
+            <h2 class="text-lg font-semibold text-slate-800 mb-6 text-test">
+              Informações do Usuário
+            </h2>
 
-          <div class="space-y-4">
+            <span class="transition-transform duration-300 arrow-settings">
+              >
+            </span>
+          </button>
+
+          <div class="space-y-4 text-test settings-content hidden">
             <div>
               <p class="text-sm text-slate-500">Nome</p>
-              <p class="font-medium text-slate-800">João Silva</p>
+              <p class="font-medium">João Silva</p>
             </div>
 
             <div>
               <p class="text-sm text-slate-500">Email</p>
-              <p class="font-medium text-slate-800">joao@email.com</p>
+              <p class="font-medium">joao@email.com</p>
             </div>
 
             <div>
               <p class="text-sm text-slate-500">Data de criação</p>
-              <p class="font-medium text-slate-800">15 de Janeiro, 2024</p>
+              <p class="font-medium">15 de Janeiro, 2024</p>
             </div>
           </div>
         </div>
 
         <!-- CARD -->
-        <div class="bg-white rounded-2xl border p-6 shadow-sm">
-          <h2 class="text-lg font-semibold text-slate-800 mb-6">
-            Cartão de Crédito
-          </h2>
+        <div class="bg-white rounded-2xl border p-6 shadow-sm settings-card">
+          <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
+            <h2 class="text-lg font-semibold mb-6 text-test">
+              Cartão de Crédito
+            </h2>
 
-          <div class="bg-slate-900 rounded-2xl p-6 text-white mb-6">
+            <span class="transition-transform duration-300 arrow-settings">
+              >
+            </span>
+          </button>
+          
+          <div class="bg-slate-900 rounded-2xl p-6 text-white mb-6 settings-content hidden">
             <p class="text-xl tracking-widest mb-4">•••• •••• •••• 4532</p>
 
             <div class="flex justify-between">
@@ -117,72 +129,224 @@
             </div>
           </div>
 
-          <button class="border px-3 py-2 rounded-xl w-full mb-2">
-            Editar cartão
-          </button>
+          <div class="settings-content hidden"> 
+            <button class="border px-3 py-2 rounded-xl w-full mb-2">
+              Editar cartão
+            </button>
 
-          <button
-            class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full"
-          >
-            Remover cartão
-          </button>
+            <button
+              class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full"
+            >
+              Remover cartão
+            </button>
+          </div>
+
+          
         </div>
 
         <!-- CONFIGURAÇÕES -->
-        <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6">
-          <h2 class="text-lg font-semibold text-slate-800 mb-6">
-            Configurações
-          </h2>
+        <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6 settings-card">
+          <button class="w-full flex items-center justify-between mb-6 toggle-settings">
+            <h2 class="text-lg font-semibold text-test">
+              Configurações
+            </h2>
+          
+            <span class="transition-transform duration-300 arrow-settings">
+              >
+            </span>
+          </button>
 
-          <div class="space-y-4">
+          <div class="space-y-4 settings-content hidden">
             <button
-              class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-slate-50"
+              class="w-full flex items-center justify-between p-3 rounded-xl hover"
             >
-              <span class="font-medium text-slate-700"> Alterar senha </span>
-              <span>></span>
+              <span class="font-medium text-test"> Alterar senha </span> >
             </button>
-
+        
             <div
-              class="flex items-center justify-between p-3 rounded-xl bg-slate-50"
+              class="flex items-center justify-between p-3 rounded-xl hover"
             >
-              <span class="font-medium text-slate-700"> Tema claro </span>
-
-              <button class="w-10 h-5 bg-gray-300 rounded-full"></button>
+              <span class="font-medium" id="theme-label"> Tema claro </span>
+              <button id="theme-toggle" class="w-10 h-5 bg-gray-300 rounded-full flex items-center transition-colors duration-300">
+                <span id="theme-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
+              </button>
             </div>
 
-            <div
-              class="flex items-center justify-between p-3 rounded-xl bg-slate-50"
-            >
-              <span class="font-medium text-slate-700"> Notificações </span>
-
-              <button class="w-10 h-5 bg-green-400 rounded-full"></button>
-            </div>
+            <div class="flex items-center justify-between p-3 rounded-xl hover">
+              <span class="font-medium"> Notificações </span>
+              <button id="notif-toggle" class="w-10 h-5 bg-green-400 rounded-full flex items-center transition-colors duration-300">
+                <span id="notif-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
+              </button>
+            </div> 
           </div>
         </div>
-
+        
         <!-- ATIVIDADES -->
-        <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6">
-          <h2 class="text-lg font-semibold text-slate-800 mb-6">
-            Atividades Recentes
-          </h2>
+        <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6 settings-card">
+          <button class="w-full flex items-start justify-between toggle-settings">
+            <h2 class="text-lg font-semibold text-test mb-6">
+              Atividades Recentes
+            </h2>
 
-          <div class="space-y-4">
+            <span class="transition-transform duration-300 arrow-settings">
+              >
+            </span>
+          </button>
+
+          <div class="space-y-4 settings-content hidden">
             <div class="pb-4 border-b">
-              <p class="font-medium text-slate-700">Login realizado</p>
+              <p class="font-medium">Login realizado</p>
               <p class="text-sm text-slate-500">Há 2 minutos</p>
             </div>
 
             <div class="pb-4 border-b">
-              <p class="font-medium text-slate-700">Cartão atualizado</p>
+              <p class="font-medium">Cartão atualizado</p>
               <p class="text-sm text-slate-500">Há 3 dias</p>
             </div>
 
             <div>
-              <p class="font-medium text-slate-700">Senha alterada</p>
+              <p class="font-medium">Senha alterada</p>
               <p class="text-sm text-slate-500">Há 1 semana</p>
             </div>
           </div>
         </div>
+
+        <script>
+          // Setas >
+          document.querySelectorAll('.toggle-settings').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const card = btn.closest('.settings-card');
+              const contents = card.querySelectorAll('.settings-content');
+              const arrow = card.querySelector('.arrow-settings');
+
+              contents.forEach(content => {
+                content.classList.toggle('hidden');
+              });
+
+              arrow.classList.toggle('rotate-90');
+            });
+          });
+
+          // Modo Escuro
+          function setTheme(dark) {
+            const body = document.body;
+            const themeLabel = document.getElementById('theme-label');
+            const themeToggle = document.getElementById('theme-toggle');
+            const knob = document.getElementById('theme-toggle-knob');
+            const settingsCard = document.querySelectorAll('.settings-card');
+            const textTests = document.querySelectorAll('.text-test');
+            const hover = document.querySelectorAll('.hover');
+      
+            if (dark) {
+              body.classList.add('bg-slate-900', 'text-slate-100');
+              body.classList.remove('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
+    
+              //Escrita
+              themeLabel.textContent = 'Tema escuro';
+              themeLabel.classList.remove('text-slate-700');
+              themeLabel.classList.add('text-slate-100');
+
+              //Botão do modos
+              themeToggle.classList.add('bg-green-400');
+              themeToggle.classList.remove('bg-gray-300');
+              knob.style.transform = 'translateX(100%)';
+                
+              //Card
+              settingsCard.forEach(el => {
+                el.classList.remove('bg-white', 'border-slate-100');
+                el.classList.add('bg-[#232336]', 'border-white', 'text-slate-100');
+              });
+                
+              //Escrita modos
+              textTests.forEach(el => {
+                el.classList.remove('text-slate-700');
+                el.classList.add('text-slate-100');
+              });
+
+              //Hover
+              hover.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                  if (document.body.classList.contains('bg-slate-900')) {
+                    el.classList.add('bg-slate-700', 'bg-opacity-30');
+                    el.classList.remove('bg-slate-100');
+                  } else {
+                    el.classList.add('bg-slate-100');
+                    el.classList.remove('bg-slate-700', 'bg-opacity-30');
+                  }
+                });
+
+                el.addEventListener('mouseleave', () => {
+                  el.classList.remove('bg-slate-700', 'bg-opacity-30', 'bg-slate-100');
+                });
+              });
+            
+      
+            } else {
+              body.classList.remove('bg-slate-900', 'text-slate-100');
+              body.classList.add('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
+                
+              themeLabel.textContent = 'Tema claro';
+              themeLabel.classList.remove('text-slate-100');
+              themeLabel.classList.add('text-slate-700');
+
+              themeToggle.classList.add('bg-gray-300');
+              themeToggle.classList.remove('bg-green-400');
+              knob.style.transform = 'translateX(0)';
+                
+              settingsCard.forEach(el => {
+                el.classList.remove('bg-[#232336]', 'border-white', 'text-slate-100');
+                el.classList.add('bg-white', 'border-slate-100');
+              });
+                
+              textTests.forEach(el => {
+                el.classList.remove('text-slate-100');
+                el.classList.add('text-slate-700');
+              });
+
+            }
+      
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+          }
+      
+          // Funcionar
+          document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme');
+            setTheme(savedTheme === 'dark');
+      
+            document.getElementById('theme-toggle').addEventListener('click', function () {
+              const isDark = localStorage.getItem('theme') === 'dark';
+              setTheme(!isDark);
+            });
+          });
+
+          // Botão de notificações
+          function setNotif(on) {
+            const notifToggle = document.getElementById('notif-toggle');
+            const knob = document.getElementById('notif-toggle-knob');
+      
+            if (on) {
+              notifToggle.classList.add('bg-green-400');
+              notifToggle.classList.remove('bg-gray-300');
+              knob.style.transform = 'translateX(100%)';
+            } else {
+              notifToggle.classList.remove('bg-green-400');
+              notifToggle.classList.add('bg-gray-300');
+              knob.style.transform = 'translateX(0)';
+            }
+      
+            localStorage.setItem('notif', on ? 'on' : 'off');
+          }
+      
+          document.addEventListener('DOMContentLoaded', function () {
+            const savedNotif = localStorage.getItem('notif');
+            setNotif(savedNotif !== 'off');
+      
+            document.getElementById('notif-toggle').addEventListener('click', function () {
+              const isOn = localStorage.getItem('notif') !== 'off';
+              setNotif(!isOn);
+            });
+          });
+        </script>
       </div>
     </main>
   </body>
