@@ -131,18 +131,19 @@
               </span>
             </button>
             
+            {% for card in cards %}
             <div class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 rounded-2xl p-6 text-white mb-6 settings-content hidden">
-              <p class="text-xl tracking-widest mb-4">•••• •••• •••• 4532</p>
+              <p class="text-xl tracking-widest mb-4">{{ card.numberCard }}</p>
 
               <div class="flex justify-between">
                 <div>
                   <p class="text-xs text-slate-400">Titular</p>
-                  <p>JOAO SILVA</p>
+                  <p>{{ card.holderName }}</p>
                 </div>
 
                 <div>
                   <p class="text-xs text-slate-400">Validade</p>
-                  <p>12/27</p>
+                  <p>{{ card.expiration }}</p>
                 </div>
 
                 <div>
@@ -151,13 +152,14 @@
                 </div>
               </div>
             </div>
+            {% endfor %}
 
             <div class="settings-content hidden"> 
-              <button class="border px-3 py-2 rounded-xl w-full mb-2"  onclick="openModal()">
+              <button class="border px-3 py-2 rounded-xl w-full mb-2" onclick="openModal()">
                 Adicionar cartão
               </button>
 
-            <!-- MODAL -->
+            <!-- MODAL ADD CARTÃO -->
             <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
               <div id="modal-content" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
                 
@@ -171,7 +173,8 @@
 
                 <!-- FORM -->
                 <form class="space-y-4" method="POST" action="{{ url_for('dashboard_route.dashboard_new_card') }}">
-                  
+                  <input type="hidden" name="user_id" value={{ id }} />
+
                   <!-- Número do cartão -->
                   <div>
                     <label class="block text-sm text-gray-600">Número do cartão</label>
@@ -234,10 +237,49 @@
               </div>
             </div>
 
-              <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full">
+              <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full" onclick="openModal()"> 
                 Remover cartão
               </button>
             </div>
+
+             <!-- MODAL ADD CARTÃO -->
+            <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+              <div id="modal-content" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
+                
+                <!-- BOTÃO FECHAR -->
+                <button onclick="closeModal()" 
+                  class="absolute top-3 right-3 text-gray-500">
+                  ✕
+                </button>
+
+                <h2 class="text-xl font-semibold mb-4">Deletar Cartão</h2>
+
+                <!-- FORM -->
+                <form class="space-y-4" method="DELETE" action="{{ url_for('dashboard_route.dashboard_delete_card') }}">
+                  <input type="hidden" name="user_id" value={{ id }} />
+
+                  <!-- Número do cartão -->
+                  <div>
+                    <label class="block text-sm text-gray-600">Número do cartão</label>
+                    <input 
+                      id="card-number"
+                      name="cardNumber"
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="Digite os 4 ultimos números do cartão"
+                      maxlength="19"
+                      class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
+                  </div>   
+
+                  <!-- BOTÃO -->
+                  <button type="submit"
+                    class="w-full bg-gradient-to-r from-blue-600 to-violet-600 text-white py-3 rounded-xl">
+                    Deletar Cartão
+                  </button>
+                </form>
+              </div>
+            </div>
+
 
             
           </div>
