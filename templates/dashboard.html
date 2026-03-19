@@ -163,48 +163,76 @@
                 
                 <!-- BOTÃO FECHAR -->
                 <button onclick="closeModal()" 
-                  class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                  class="absolute top-3 right-3 text-gray-500">
                   ✕
                 </button>
 
                 <h2 class="text-xl font-semibold mb-4">Adicionar Cartão</h2>
 
                 <!-- FORM -->
-                <form class="space-y-4">
+                <form class="space-y-4" method="POST" action="{{ url_for('dashboard_route.dashboard_new_card') }}">
                   
+                  <!-- Número do cartão -->
                   <div>
                     <label class="block text-sm text-gray-600">Número do cartão</label>
-                    <input type="text" placeholder="0000 0000 0000 0000"
+                    <input 
+                      id="card-number"
+                      name="cardNumber"
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="0000 0000 0000 0000"
+                      maxlength="19"
                       class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
                   </div>
 
+                  <!-- Titular -->
                   <div>
                     <label class="block text-sm text-gray-600">Titular</label>
-                    <input type="text" placeholder="Nome como no cartão"
+                    <input 
+                      name="holderName"
+                      type="text"
+                      placeholder="Nome como no cartão"
                       class="w-full mt-1 p-3 border rounded-xl">
                   </div>
 
+                  <!-- Validade + CVV -->
                   <div class="flex gap-4">
+                    
+                    <!-- Validade -->
                     <div class="flex-1">
                       <label class="block text-sm text-gray-600">Validade</label>
-                      <input type="text" placeholder="MM/AA"
+                      <input 
+                        id="card-exp"
+                        name="expiration"
+                        type="text"
+                        inputmode="numeric"
+                        placeholder="MM/AA"
+                        maxlength="5"
                         class="w-full mt-1 p-3 border rounded-xl">
                     </div>
 
+                    <!-- CVV -->
                     <div class="w-24">
                       <label class="block text-sm text-gray-600">CVV</label>
-                      <input type="password" placeholder="123"
+                      <input 
+                        id="card-cvv"
+                        name="cvv"
+                        type="text"
+                        inputmode="numeric"
+                        placeholder="123"
+                        maxlength="4"
                         class="w-full mt-1 p-3 border rounded-xl">
                     </div>
                   </div>
 
+                  <!-- BOTÃO -->
                   <button type="submit"
-                    class="w-full bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 text-white py-3 rounded-xl">
+                    class="w-full bg-gradient-to-r from-blue-600 to-violet-600 text-white py-3 rounded-xl">
                     Salvar Cartão
                   </button>
                 </form>
               </div>
-          </div>  
+            </div>
 
               <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full">
                 Remover cartão
@@ -442,13 +470,59 @@
               function closeModal() {
                 modal.classList.add("hidden");
                 modal.classList.remove("flex");
+                modal.querySelectorAll("input").forEach(input => input.value = ""); // limpa os campos
               }
 
               // fechar clicando fora
               modal.addEventListener("click", (e) => {
                 if (e.target === modal) {
+                  
                   closeModal();
                 }
+              });
+
+              // CARTÃO (0000 0000 0000 0000)
+              const cardNumber = document.getElementById('card-number');
+
+              cardNumber.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, ''); // só números
+
+                // limita a 16 dígitos (padrão real)
+                value = value.substring(0, 16);
+
+                // adiciona espaços a cada 4 números
+                value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+
+                e.target.value = value;
+              });
+
+              // VALIDADE (MM/AA)
+              const cardExp = document.getElementById('card-exp');
+
+              cardExp.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+
+                // limita a 4 números
+                value = value.substring(0, 4);
+
+                // adiciona /
+                if (value.length > 2) {
+                  value = value.replace(/(\d{2})(\d+)/, '$1/$2');
+                }
+
+                e.target.value = value;
+              });
+
+              // CVV (3 ou 4 dígitos)
+              const cardCvv = document.getElementById('card-cvv');
+
+              cardCvv.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+
+                // limita a 4 (alguns cartões usam 4)
+                value = value.substring(0, 4);
+
+                e.target.value = value;
               });
           </script>
         </div>
