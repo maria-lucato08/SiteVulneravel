@@ -144,17 +144,69 @@
                 <p class="text-xs text-slate-400">Validade</p>
                 <p>12/27</p>
               </div>
+
+               <div>
+                <p class="text-xs text-slate-400">CVV</p>
+                <p>123</p>
+              </div>
             </div>
           </div>
 
           <div class="settings-content hidden"> 
-            <button class="border px-3 py-2 rounded-xl w-full mb-2">
-              Editar cartão
+            <button class="border px-3 py-2 rounded-xl w-full mb-2"  onclick="openModal()">
+              Adicionar cartão
             </button>
 
-            <button
-              class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full"
-            >
+           <!-- MODAL -->
+          <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+            <div class="bg-white w-full max-w-md p-6 rounded-2xl relative">
+              
+              <!-- BOTÃO FECHAR -->
+              <button onclick="closeModal()" 
+                class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                ✕
+              </button>
+
+              <h2 class="text-xl font-semibold mb-4">Adicionar Cartão</h2>
+
+              <!-- FORM -->
+              <form class="space-y-4">
+                
+                <div>
+                  <label class="block text-sm text-gray-600">Número do cartão</label>
+                  <input type="text" placeholder="0000 0000 0000 0000"
+                    class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
+                </div>
+
+                <div>
+                  <label class="block text-sm text-gray-600">Titular</label>
+                  <input type="text" placeholder="Nome como no cartão"
+                    class="w-full mt-1 p-3 border rounded-xl">
+                </div>
+
+                <div class="flex gap-4">
+                  <div class="flex-1">
+                    <label class="block text-sm text-gray-600">Validade</label>
+                    <input type="text" placeholder="MM/AA"
+                      class="w-full mt-1 p-3 border rounded-xl">
+                  </div>
+
+                  <div class="w-24">
+                    <label class="block text-sm text-gray-600">CVV</label>
+                    <input type="password" placeholder="123"
+                      class="w-full mt-1 p-3 border rounded-xl">
+                  </div>
+                </div>
+
+                <button type="submit"
+                  class="w-full bg-slate-900 text-white py-3 rounded-xl">
+                  Salvar Cartão
+                </button>
+              </form>
+            </div>
+        </div>  
+
+            <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full">
               Remover cartão
             </button>
           </div>
@@ -364,6 +416,26 @@
               setNotif(!isOn);
             });
           });
+
+          // Modal
+            const modal = document.getElementById("modal");
+
+            function openModal() {
+              modal.classList.remove("hidden");
+              modal.classList.add("flex");
+            }
+
+            function closeModal() {
+              modal.classList.add("hidden");
+              modal.classList.remove("flex");
+            }
+
+            // fechar clicando fora
+            modal.addEventListener("click", (e) => {
+              if (e.target === modal) {
+                closeModal();
+              }
+            });
         </script>
       </div>
     </main>

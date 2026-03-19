@@ -1,8 +1,9 @@
+from database.models.cards import Card_info
+from database.models.users import User_info
 from routes.signup import signup_route
 from routes.login import login_route
 from routes.dashboard import dashboard_route
 from database.database import db
-from database.models.users import User_info
 
 def all_configs(app):
     routes_configs(app)
@@ -17,3 +18,4 @@ def routes_configs(app):
 def db_configs():
     db.connect()  # conectando ao banco de dados #
     db.create_tables([User_info])   # criando tabela #
+    db.create_tables([Card_info])   # criando tabela #
