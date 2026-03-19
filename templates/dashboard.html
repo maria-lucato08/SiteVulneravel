@@ -1,443 +1,457 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!doctype html>
+  <html lang="pt-BR">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>SecureHub</title>
+      <title>SecureHub</title>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
+      <!-- Tailwind -->
+      <script src="https://cdn.tailwindcss.com"></script>
+    </head>
 
-    <body
-    class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/30"
-  >
-    <!-- HEADER -->
-    <header
-      class="sticky top-0 z-50 backdrop-blur-lg border-b border-slate-200"
+      <body
+      class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/30"
     >
-      <div
-        class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16"
+      <!-- HEADER -->
+      <header
+        class="sticky top-0 z-50 backdrop-blur-lg border-b border-slate-200"
       >
-        <div class="flex items-center gap-3">
-          <div
-            class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center"
-          >
-            <span class="font-bold">S</span>
-          </div>
-
-          <span
-            class="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent"
-          >
-            SecureHub
-          </span>
-        </div>
-
-        <div class="flex items-center gap-3 text-test">
-          <div class="hidden sm:flex items-center gap-3">
+        <div
+          class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16"
+        >
+          <div class="flex items-center gap-3">
             <div
-              class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-test font-semibold"
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center"
             >
-              {{ name[0].upper() }}
+              <span class="font-bold">S</span>
             </div>
 
-            <span class="font-medium">{{ name }}</span>
+            <span
+              class="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent"
+            >
+              SecureHub
+            </span>
           </div>
 
-          <a href="{{ url_for('login_route.login') }}" class="ml-4">
-            <button
-              id="logout"
-              class="border px-3 py-1 rounded-lg text-slate-300 hover:bg-slate-50"
-            >
-              Logout
-            </button></a>
-        </div>
-      </div>
-    </header>
-
-    <!-- MAIN -->
-    <main class="max-w-6xl mx-auto px-4 py-8">
-      <!-- HERO -->
-      <section
-        class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 text-white"
-      >
-        <h1 class="text-3xl font-bold">Olá, {{ name }}! 👋</h1>
-
-        <p class="mt-2 text-blue-100">
-          Bem-vindo de volta! Gerencie sua conta com segurança.
-        </p>
-      </section>
-
-
-        
-      <!-- GRID -->
-
-      <!-- Search Bar -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="lg:col-span-2 bg-white rounded-3xl ">
-            <div class="flex items-center max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-transparent">
-              <input
-                type="search"
-                placeholder="Search..."
-                class="w-full px-4 py-2 text-gray-700 placeholder-gray-400 outline-none"
-              />
-              <button class="px-4 py-2 bg-blue-500 text-white font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-200">
-                Search
-              </button>
-            </div>
-         </div>
-
-        <!-- USER INFO -->
-        <div class="lg:col-span-2 bg-white rounded-2xl border p-6 shadow-sm settings-card">
-          <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
-            <h2 class="text-lg font-semibold text-slate-800 mb-6 text-test">
-              Informações do Usuário
-            </h2>
-
-
-            <span class="transition-transform duration-300 arrow-settings">
+          <div class="flex items-center gap-3 text-test">
+            <div class="hidden sm:flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-test font-semibold"
               >
-            </span>
-          </button>
+                {{ name[0].upper() }}
+              </div>
 
-          <div class="space-y-4 text-test settings-content hidden">
-            <div>
-              <p class="text-sm text-slate-500">Nome</p>
-              <p class="font-medium">{{ name }}</p>
+              <span class="font-medium">{{ name }}</span>
             </div>
 
-            <div>
-              <p class="text-sm text-slate-500">Email</p>
-              <p class="font-medium">{{ email }}</p>
-            </div>
-
-            <div>
-              <p class="text-sm text-slate-500">Data de criação</p>
-              <p class="font-medium">15 de Janeiro, 2024</p>
-            </div>
+            <a href="{{ url_for('login_route.login') }}" class="ml-4">
+              <button
+                id="logout"
+                class="border px-3 py-1 rounded-lg text-slate-300 hover:bg-slate-50"
+              >
+                Logout
+              </button></a>
           </div>
         </div>
+      </header>
 
-        <!-- CARD -->
-        <div class="bg-white rounded-2xl border p-6 shadow-sm settings-card">
-          <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
-            <h2 class="text-lg font-semibold mb-6 text-test">
-              Cartão de Crédito
-            </h2>
+      <!-- MAIN -->
+      <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- HERO -->
+        <section
+          class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 text-white"
+        >
+          <h1 class="text-3xl font-bold">Olá, {{ name }}! 👋</h1>
 
-            <span class="transition-transform duration-300 arrow-settings">
-              >
-            </span>
-          </button>
+          <p class="mt-2 text-blue-100">
+            Bem-vindo de volta! Gerencie sua conta com segurança.
+          </p>
+        </section>
+
+
           
-          <div class="bg-slate-900 rounded-2xl p-6 text-white mb-6 settings-content hidden">
-            <p class="text-xl tracking-widest mb-4">•••• •••• •••• 4532</p>
+        <!-- GRID -->
 
-            <div class="flex justify-between">
-              <div>
-                <p class="text-xs text-slate-400">Titular</p>
-                <p>JOAO SILVA</p>
-              </div>
-
-              <div>
-                <p class="text-xs text-slate-400">Validade</p>
-                <p>12/27</p>
-              </div>
-
-               <div>
-                <p class="text-xs text-slate-400">CVV</p>
-                <p>123</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="settings-content hidden"> 
-            <button class="border px-3 py-2 rounded-xl w-full mb-2"  onclick="openModal()">
-              Adicionar cartão
-            </button>
-
-           <!-- MODAL -->
-          <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
-            <div class="bg-white w-full max-w-md p-6 rounded-2xl relative">
-              
-              <!-- BOTÃO FECHAR -->
-              <button onclick="closeModal()" 
-                class="absolute top-3 right-3 text-gray-500 hover:text-black">
-                ✕
-              </button>
-
-              <h2 class="text-xl font-semibold mb-4">Adicionar Cartão</h2>
-
-              <!-- FORM -->
-              <form class="space-y-4">
-                
-                <div>
-                  <label class="block text-sm text-gray-600">Número do cartão</label>
-                  <input type="text" placeholder="0000 0000 0000 0000"
-                    class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
-                </div>
-
-                <div>
-                  <label class="block text-sm text-gray-600">Titular</label>
-                  <input type="text" placeholder="Nome como no cartão"
-                    class="w-full mt-1 p-3 border rounded-xl">
-                </div>
-
-                <div class="flex gap-4">
-                  <div class="flex-1">
-                    <label class="block text-sm text-gray-600">Validade</label>
-                    <input type="text" placeholder="MM/AA"
-                      class="w-full mt-1 p-3 border rounded-xl">
-                  </div>
-
-                  <div class="w-24">
-                    <label class="block text-sm text-gray-600">CVV</label>
-                    <input type="password" placeholder="123"
-                      class="w-full mt-1 p-3 border rounded-xl">
-                  </div>
-                </div>
-
-                <button type="submit"
-                  class="w-full bg-slate-900 text-white py-3 rounded-xl">
-                  Salvar Cartão
+        <!-- Search Bar -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="lg:col-span-2 bg-white rounded-3xl ">
+              <div class="flex items-center max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-transparent">
+                <input
+                  type="search"
+                  placeholder="Search..."
+                  class="w-full px-4 py-2 text-gray-700 placeholder-gray-400 outline-none"
+                />
+                <button class="px-4 py-2 bg-blue-500 text-white font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-200">
+                  Search
                 </button>
-              </form>
-            </div>
-        </div>  
+              </div>
+          </div>
 
-            <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full">
-              Remover cartão
+          <!-- USER INFO -->
+          <div class="lg:col-span-2 bg-white rounded-2xl border p-6 shadow-sm settings-card">
+            <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
+              <h2 class="text-lg font-semibold text-slate-800 mb-6 text-test">
+                Informações do Usuário
+              </h2>
+
+
+              <span class="transition-transform duration-300 arrow-settings">
+                >
+              </span>
             </button>
+
+            <div class="space-y-4 text-test settings-content hidden">
+              <div>
+                <p class="text-sm text-slate-500">Nome</p>
+                <p class="font-medium">{{ name }}</p>
+              </div>
+
+              <div>
+                <p class="text-sm text-slate-500">Email</p>
+                <p class="font-medium">{{ email }}</p>
+              </div>
+
+              <div>
+                <p class="text-sm text-slate-500">Data de criação</p>
+                <p class="font-medium">15 de Janeiro, 2024</p>
+              </div>
+            </div>
           </div>
 
-          
-        </div>
+          <!-- CARD -->
+          <div class="bg-white rounded-2xl border p-6 shadow-sm settings-card">
+            <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
+              <h2 class="text-lg font-semibold mb-6 text-test">
+                Cartão de Crédito
+              </h2>
 
-        <!-- CONFIGURAÇÕES -->
-        <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6 settings-card">
-          <button class="w-full flex items-center justify-between mb-6 toggle-settings">
-            <h2 class="text-lg font-semibold text-test">
-              Configurações
-            </h2>
-          
-            <span class="transition-transform duration-300 arrow-settings">
-              >
-            </span>
-          </button>
-
-          <div class="space-y-4 settings-content hidden">
-            <button
-              class="w-full flex items-center justify-between p-3 rounded-xl hover"
-            >
-              <span class="font-medium text-test"> Alterar senha </span> >
+              <span class="transition-transform duration-300 arrow-settings">
+                >
+              </span>
             </button>
-        
-            <div
-              class="flex items-center justify-between p-3 rounded-xl hover"
-            >
-              <span class="font-medium" id="theme-label"> Tema claro </span>
-              <button id="theme-toggle" class="w-10 h-5 bg-gray-300 rounded-full flex items-center transition-colors duration-300">
-                <span id="theme-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
-              </button>
-            </div>
-
-            <div class="flex items-center justify-between p-3 rounded-xl hover">
-              <span class="font-medium"> Notificações </span>
-              <button id="notif-toggle" class="w-10 h-5 bg-green-400 rounded-full flex items-center transition-colors duration-300">
-                <span id="notif-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
-              </button>
-            </div> 
-          </div>
-        </div>
-        
-        <!-- ATIVIDADES -->
-        <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6 settings-card">
-          <button class="w-full flex items-start justify-between toggle-settings">
-            <h2 class="text-lg font-semibold text-test mb-6">
-              Atividades Recentes
-            </h2>
-
-            <span class="transition-transform duration-300 arrow-settings">
-              >
-            </span>
-          </button>
-
-          <div class="space-y-4 settings-content hidden">
-            <div class="pb-4 border-b">
-              <p class="font-medium">Login realizado</p>
-              <p class="text-sm text-slate-500">Há 2 minutos</p>
-            </div>
-
-            <div class="pb-4 border-b">
-              <p class="font-medium">Cartão atualizado</p>
-              <p class="text-sm text-slate-500">Há 3 dias</p>
-            </div>
-
-            <div>
-              <p class="font-medium">Senha alterada</p>
-              <p class="text-sm text-slate-500">Há 1 semana</p>
-            </div>
-          </div>
-        </div>
-
-        <script>
-          // Setas >
-          document.querySelectorAll('.toggle-settings').forEach(btn => {
-            btn.addEventListener('click', () => {
-              const card = btn.closest('.settings-card');
-              const contents = card.querySelectorAll('.settings-content');
-              const arrow = card.querySelector('.arrow-settings');
-
-              contents.forEach(content => {
-                content.classList.toggle('hidden');
-              });
-
-              arrow.classList.toggle('rotate-90');
-            });
-          });
-
-          // Modo Escuro
-          function setTheme(dark) {
-            const body = document.body;
-            const themeLabel = document.getElementById('theme-label');
-            const themeToggle = document.getElementById('theme-toggle');
-            const knob = document.getElementById('theme-toggle-knob');
-            const settingsCard = document.querySelectorAll('.settings-card');
-            const textTests = document.querySelectorAll('.text-test');
-            const hover = document.querySelectorAll('.hover');
-      
-            if (dark) {
-              body.classList.add('bg-slate-900', 'text-slate-100');
-              body.classList.remove('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
-    
-              //Escrita
-              themeLabel.textContent = 'Tema escuro';
-              themeLabel.classList.remove('text-slate-700');
-              themeLabel.classList.add('text-slate-100');
-
-              //Botão do modos
-              themeToggle.classList.add('bg-green-400');
-              themeToggle.classList.remove('bg-gray-300');
-              knob.style.transform = 'translateX(100%)';
-                
-              //Card
-              settingsCard.forEach(el => {
-                el.classList.remove('bg-white', 'border-slate-100');
-                el.classList.add('bg-[#232336]', 'border-white', 'text-slate-100');
-              });
-                
-              //Escrita modos
-              textTests.forEach(el => {
-                el.classList.remove('text-slate-700');
-                el.classList.add('text-slate-100');
-              });
-
-              //Hover
-              hover.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                  if (document.body.classList.contains('bg-slate-900')) {
-                    el.classList.add('bg-slate-700', 'bg-opacity-30');
-                    el.classList.remove('bg-slate-100');
-                  } else {
-                    el.classList.add('bg-slate-100');
-                    el.classList.remove('bg-slate-700', 'bg-opacity-30');
-                  }
-                });
-
-                el.addEventListener('mouseleave', () => {
-                  el.classList.remove('bg-slate-700', 'bg-opacity-30', 'bg-slate-100');
-                });
-              });
             
-      
-            } else {
-              body.classList.remove('bg-slate-900', 'text-slate-100');
-              body.classList.add('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
-                
-              themeLabel.textContent = 'Tema claro';
-              themeLabel.classList.remove('text-slate-100');
-              themeLabel.classList.add('text-slate-700');
+            <div class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 rounded-2xl p-6 text-white mb-6 settings-content hidden">
+              <p class="text-xl tracking-widest mb-4">•••• •••• •••• 4532</p>
 
-              themeToggle.classList.add('bg-gray-300');
-              themeToggle.classList.remove('bg-green-400');
-              knob.style.transform = 'translateX(0)';
+              <div class="flex justify-between">
+                <div>
+                  <p class="text-xs text-slate-400">Titular</p>
+                  <p>JOAO SILVA</p>
+                </div>
+
+                <div>
+                  <p class="text-xs text-slate-400">Validade</p>
+                  <p>12/27</p>
+                </div>
+
+                <div>
+                  <p class="text-xs text-slate-400">CVV</p>
+                  <p>123</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-content hidden"> 
+              <button class="border px-3 py-2 rounded-xl w-full mb-2"  onclick="openModal()">
+                Adicionar cartão
+              </button>
+
+            <!-- MODAL -->
+            <div id="modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+              <div id="modal-content" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
                 
-              settingsCard.forEach(el => {
-                el.classList.remove('bg-[#232336]', 'border-white', 'text-slate-100');
-                el.classList.add('bg-white', 'border-slate-100');
+                <!-- BOTÃO FECHAR -->
+                <button onclick="closeModal()" 
+                  class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                  ✕
+                </button>
+
+                <h2 class="text-xl font-semibold mb-4">Adicionar Cartão</h2>
+
+                <!-- FORM -->
+                <form class="space-y-4">
+                  
+                  <div>
+                    <label class="block text-sm text-gray-600">Número do cartão</label>
+                    <input type="text" placeholder="0000 0000 0000 0000"
+                      class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
+                  </div>
+
+                  <div>
+                    <label class="block text-sm text-gray-600">Titular</label>
+                    <input type="text" placeholder="Nome como no cartão"
+                      class="w-full mt-1 p-3 border rounded-xl">
+                  </div>
+
+                  <div class="flex gap-4">
+                    <div class="flex-1">
+                      <label class="block text-sm text-gray-600">Validade</label>
+                      <input type="text" placeholder="MM/AA"
+                        class="w-full mt-1 p-3 border rounded-xl">
+                    </div>
+
+                    <div class="w-24">
+                      <label class="block text-sm text-gray-600">CVV</label>
+                      <input type="password" placeholder="123"
+                        class="w-full mt-1 p-3 border rounded-xl">
+                    </div>
+                  </div>
+
+                  <button type="submit"
+                    class="w-full bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 text-white py-3 rounded-xl">
+                    Salvar Cartão
+                  </button>
+                </form>
+              </div>
+          </div>  
+
+              <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full">
+                Remover cartão
+              </button>
+            </div>
+
+            
+          </div>
+
+          <!-- CONFIGURAÇÕES -->
+          <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6 settings-card">
+            <button class="w-full flex items-center justify-between mb-6 toggle-settings">
+              <h2 class="text-lg font-semibold text-test">
+                Configurações
+              </h2>
+            
+              <span class="transition-transform duration-300 arrow-settings">
+                >
+              </span>
+            </button>
+
+            <div class="space-y-4 settings-content hidden">
+              <button
+                class="w-full flex items-center justify-between p-3 rounded-xl hover"
+              >
+                <span class="font-medium text-test"> Alterar senha </span> >
+              </button>
+          
+              <div
+                class="flex items-center justify-between p-3 rounded-xl hover"
+              >
+                <span class="font-medium" id="theme-label"> Tema claro </span>
+                <button id="theme-toggle" class="w-10 h-5 bg-gray-300 rounded-full flex items-center transition-colors duration-300">
+                  <span id="theme-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between p-3 rounded-xl hover">
+                <span class="font-medium"> Notificações </span>
+                <button id="notif-toggle" class="w-10 h-5 bg-green-400 rounded-full flex items-center transition-colors duration-300">
+                  <span id="notif-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
+                </button>
+              </div> 
+            </div>
+          </div>
+          
+          <!-- ATIVIDADES -->
+          <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6 settings-card">
+            <button class="w-full flex items-start justify-between toggle-settings">
+              <h2 class="text-lg font-semibold text-test mb-6">
+                Atividades Recentes
+              </h2>
+
+              <span class="transition-transform duration-300 arrow-settings">
+                >
+              </span>
+            </button>
+
+            <div class="space-y-4 settings-content hidden">
+              <div class="pb-4 border-b">
+                <p class="font-medium">Login realizado</p>
+                <p class="text-sm text-slate-500">Há 2 minutos</p>
+              </div>
+
+              <div class="pb-4 border-b">
+                <p class="font-medium">Cartão atualizado</p>
+                <p class="text-sm text-slate-500">Há 3 dias</p>
+              </div>
+
+              <div>
+                <p class="font-medium">Senha alterada</p>
+                <p class="text-sm text-slate-500">Há 1 semana</p>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            // Setas >
+            document.querySelectorAll('.toggle-settings').forEach(btn => {
+              btn.addEventListener('click', () => {
+                const card = btn.closest('.settings-card');
+                const contents = card.querySelectorAll('.settings-content');
+                const arrow = card.querySelector('.arrow-settings');
+
+                contents.forEach(content => {
+                  content.classList.toggle('hidden');
+                });
+
+                arrow.classList.toggle('rotate-90');
               });
-                
-              textTests.forEach(el => {
-                el.classList.remove('text-slate-100');
-                el.classList.add('text-slate-700');
+            });
+
+            // Modo Escuro
+            function setTheme(dark) {
+              const body = document.body;
+              const themeLabel = document.getElementById('theme-label');
+              const themeToggle = document.getElementById('theme-toggle');
+              const knob = document.getElementById('theme-toggle-knob');
+              const settingsCard = document.querySelectorAll('.settings-card');
+              const textTests = document.querySelectorAll('.text-test');
+              const hover = document.querySelectorAll('.hover');
+              const modalContent = document.getElementById('modal-content');
+   
+              if (dark) {
+                body.classList.add('bg-slate-900', 'text-slate-100');
+                body.classList.remove('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
+      
+                //Escrita
+                themeLabel.textContent = 'Tema escuro';
+                themeLabel.classList.remove('text-slate-700');
+                themeLabel.classList.add('text-slate-100');
+
+                //Botão do modos
+                themeToggle.classList.add('bg-green-400');
+                themeToggle.classList.remove('bg-gray-300');
+                knob.style.transform = 'translateX(100%)';
+                  
+                //Card
+                settingsCard.forEach(el => {
+                  el.classList.remove('bg-white', 'border-slate-100');
+                  el.classList.add('bg-[#232336]', 'border-white', 'text-slate-100');
+                });
+                  
+                //Escrita modos
+                textTests.forEach(el => {
+                  el.classList.remove('text-slate-700');
+                  el.classList.add('text-slate-100');
+                });
+
+                  modalContent.classList.remove('bg-white');
+                  modalContent.classList.add('bg-[#232336]', 'text-slate-100');
+                  document.querySelectorAll('#modal input').forEach(input => {
+                  input.classList.add('bg-slate-800', 'text-white', 'border-slate-600');
+                });
+
+                //Hover
+                hover.forEach(el => {
+                  el.addEventListener('mouseenter', () => {
+                    if (document.body.classList.contains('bg-slate-900')) {
+                      el.classList.add('bg-slate-700', 'bg-opacity-30');
+                      el.classList.remove('bg-slate-100');
+                    } else {
+                      el.classList.add('bg-slate-100');
+                      el.classList.remove('bg-slate-700', 'bg-opacity-30');
+                    }
+                  });
+
+                  el.addEventListener('mouseleave', () => {
+                    el.classList.remove('bg-slate-700', 'bg-opacity-30', 'bg-slate-100');
+                  });
+                });
+              
+        
+              } else {
+                body.classList.remove('bg-slate-900', 'text-slate-100');
+                body.classList.add('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
+                  
+                themeLabel.textContent = 'Tema claro';
+                themeLabel.classList.remove('text-slate-100');
+                themeLabel.classList.add('text-slate-700');
+
+                themeToggle.classList.add('bg-gray-300');
+                themeToggle.classList.remove('bg-green-400');
+                knob.style.transform = 'translateX(0)';
+                  
+                settingsCard.forEach(el => {
+                  el.classList.remove('bg-[#232336]', 'border-white', 'text-slate-100');
+                  el.classList.add('bg-white', 'border-slate-100');
+                });
+                  
+                textTests.forEach(el => {
+                  el.classList.remove('text-slate-100');
+                  el.classList.add('text-slate-700');
+                });
+
+                 modalContent.classList.remove('bg-[#232336]', 'text-slate-100');
+                 modalContent.classList.add('bg-white');
+
+                 document.querySelectorAll('#modal input').forEach(input => {
+                input.classList.remove('bg-slate-800', 'text-white', 'border-slate-600');
               });
 
-            }
-      
-            localStorage.setItem('theme', dark ? 'dark' : 'light');
-          }
-      
-          // Funcionar
-          document.addEventListener('DOMContentLoaded', function () {
-            const savedTheme = localStorage.getItem('theme');
-            setTheme(savedTheme === 'dark');
-      
-            document.getElementById('theme-toggle').addEventListener('click', function () {
-              const isDark = localStorage.getItem('theme') === 'dark';
-              setTheme(!isDark);
-            });
-          });
-
-          // Botão de notificações
-          function setNotif(on) {
-            const notifToggle = document.getElementById('notif-toggle');
-            const knob = document.getElementById('notif-toggle-knob');
-      
-            if (on) {
-              notifToggle.classList.add('bg-green-400');
-              notifToggle.classList.remove('bg-gray-300');
-              knob.style.transform = 'translateX(100%)';
-            } else {
-              notifToggle.classList.remove('bg-green-400');
-              notifToggle.classList.add('bg-gray-300');
-              knob.style.transform = 'translateX(0)';
-            }
-      
-            localStorage.setItem('notif', on ? 'on' : 'off');
-          }
-      
-          document.addEventListener('DOMContentLoaded', function () {
-            const savedNotif = localStorage.getItem('notif');
-            setNotif(savedNotif !== 'off');
-      
-            document.getElementById('notif-toggle').addEventListener('click', function () {
-              const isOn = localStorage.getItem('notif') !== 'off';
-              setNotif(!isOn);
-            });
-          });
-
-          // Modal
-            const modal = document.getElementById("modal");
-
-            function openModal() {
-              modal.classList.remove("hidden");
-              modal.classList.add("flex");
-            }
-
-            function closeModal() {
-              modal.classList.add("hidden");
-              modal.classList.remove("flex");
-            }
-
-            // fechar clicando fora
-            modal.addEventListener("click", (e) => {
-              if (e.target === modal) {
-                closeModal();
               }
+        
+              localStorage.setItem('theme', dark ? 'dark' : 'light');
+            }
+        
+            // Funcionar
+            document.addEventListener('DOMContentLoaded', function () {
+              const savedTheme = localStorage.getItem('theme');
+              setTheme(savedTheme === 'dark');
+        
+              document.getElementById('theme-toggle').addEventListener('click', function () {
+                const isDark = localStorage.getItem('theme') === 'dark';
+                setTheme(!isDark);
+              });
             });
-        </script>
-      </div>
-    </main>
-  </body>
-</html>
+
+            // Botão de notificações
+            function setNotif(on) {
+              const notifToggle = document.getElementById('notif-toggle');
+              const knob = document.getElementById('notif-toggle-knob');
+        
+              if (on) {
+                notifToggle.classList.add('bg-green-400');
+                notifToggle.classList.remove('bg-gray-300');
+                knob.style.transform = 'translateX(100%)';
+              } else {
+                notifToggle.classList.remove('bg-green-400');
+                notifToggle.classList.add('bg-gray-300');
+                knob.style.transform = 'translateX(0)';
+              }
+        
+              localStorage.setItem('notif', on ? 'on' : 'off');
+            }
+        
+            document.addEventListener('DOMContentLoaded', function () {
+              const savedNotif = localStorage.getItem('notif');
+              setNotif(savedNotif !== 'off');
+        
+              document.getElementById('notif-toggle').addEventListener('click', function () {
+                const isOn = localStorage.getItem('notif') !== 'off';
+                setNotif(!isOn);
+              });
+            });
+
+            // Modal
+              const modal = document.getElementById("modal");
+
+              function openModal() {
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+              }
+
+              function closeModal() {
+                modal.classList.add("hidden");
+                modal.classList.remove("flex");
+              }
+
+              // fechar clicando fora
+              modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                  closeModal();
+                }
+              });
+          </script>
+        </div>
+      </main>
+    </body>
+  </html>
