@@ -173,7 +173,7 @@
 
                 <!-- FORM -->
                 <form class="space-y-4" method="POST" action="{{ url_for('dashboard_route.dashboard_new_card') }}">
-                  <input type="hidden" name="user_id" value={{ id }} />
+                  <input type="hidden" name="id" value={{ id }} />
 
                   <!-- Número do cartão -->
                   <div>
@@ -255,19 +255,19 @@
                 <h2 class="text-xl font-semibold mb-4">Deletar Cartão</h2>
 
                 <!-- FORM -->
-                <form class="space-y-4" method="DELETE" action="{{ url_for('dashboard_route.dashboard_delete_card') }}">
-                  <input type="hidden" name="user_id" value={{ id }} />
+                <form class="space-y-4" method="POST" action="{{ url_for('dashboard_route.dashboard_delete_card') }}">
+                  <input type="hidden" name="id" value={{ id }} />
 
                   <!-- Número do cartão -->
                   <div>
                     <label class="block text-sm text-gray-600">Número do cartão</label>
                     <input 
-                      id="card-number"
-                      name="cardNumber"
+                      id="card-4number"
+                      name="card4Number"
                       type="text"
                       inputmode="numeric"
                       placeholder="Digite os 4 ultimos números do cartão"
-                      maxlength="19"
+                      maxlength="4"
                       class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
                   </div>   
 
