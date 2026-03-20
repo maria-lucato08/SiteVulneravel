@@ -10,7 +10,7 @@ def signup_page():
 @signup_route.route('/signup', methods=['POST']) # acessar a página com o método POST #
 def signup_register():
     data = request.form # obtém os dados do formulário enviado #
-    new_user = User_info.create(
+    User_info.create(
         name = data['name'],
         email = data['email'],
         password = data['password']
