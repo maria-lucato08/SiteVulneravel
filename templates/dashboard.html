@@ -1,48 +1,77 @@
-  <!doctype html>
-  <html lang="pt-BR">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <title>SecureHub</title>
+    <title>SecureHub</title>
 
-      <!-- Tailwind -->
-      <script src="https://cdn.tailwindcss.com"></script>
-    </head>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-      <body
-      class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/30"
-    >
-      <!-- HEADER -->
-      <header
-        class="sticky top-0 z-50 backdrop-blur-lg border-b border-slate-200"
-      >
-        <div
-          class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center"
-            >
-              <span class="font-bold">S</span>
-            </div>
+    <body
+    class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/30"
+  >
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 backdrop-blur-lg border-b border-slate-200">
 
-            <span
-              class="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent"
-            >
-              SecureHub
-            </span>
+      <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white">
+            <span class="font-bold">S</span>
           </div>
 
-          <div class="flex items-center gap-3 text-test">
-            <div class="hidden sm:flex items-center gap-3">
-              <div
-                class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-test font-semibold"
-              >
-                {{ name[0].upper() }}
-              </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+            SecureHub
+          </span>
+        </div>
 
-              <span class="font-medium">{{ name }}</span>
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex items-center gap-3 text-white">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center font-semibold">
+              {{ name[0].upper() }}
+            </div>
+
+            <span class="font-medium">{{ name }}</span>
+          </div>
+
+          <a href="{{ url_for('login_route.login') }}" class="ml-4">
+            <button class="border px-3 py-1 rounded-lg text-test hover:bg-slate-100">
+              Logout
+            </button>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+      <!-- HERO -->
+      <section class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 text-white">
+        <h1 class="text-3xl font-bold">Olá, {{ name }}! 👋</h1>
+
+        <p class="mt-2 text-blue-100">
+          Bem-vindo de volta! Gerencie sua conta com segurança.
+        </p>
+      </section>
+
+      <!-- GRID -->
+
+      <!-- Search Bar -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="lg:col-span-2 bg-white rounded-3xl ">
+            <div class="flex items-center max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-transparent">
+              <input
+                type="search"
+                placeholder="Search..."
+                class="w-full px-4 py-2 text-gray-700 placeholder-gray-400 outline-none"
+              />
+              <button class="px-4 py-2 bg-blue-500 text-white font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-200">
+                Search
+              </button>
+
             </div>
 
             <a href="{{ url_for('login_route.login') }}" class="ml-4">
