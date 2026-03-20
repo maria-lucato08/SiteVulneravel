@@ -10,10 +10,7 @@ def dashboard(id):
     gettingUser = User_info.get_or_none(User_info.id == id)
     cards = Card_info.select().where(Card_info.holderEmail == gettingUser.email)
     
-    if gettingUser == None:
-        return 'Usuário não encontrado'
-    else:
-        return render_template('dashboard.html', id=gettingUser.id, name=gettingUser.name, email=gettingUser.email, cards=cards) 
+    return render_template('dashboard.html', id=gettingUser.id, name=gettingUser.name, email=gettingUser.email, cards=cards) 
     
     
 @dashboard_route.route('/dashboard/new-card', methods=['POST'])
@@ -40,7 +37,7 @@ def dashboard_delete_card():
     confirmLast4 = Card_info.get_or_none(fn.SUBSTR(Card_info.numberCard, -4) == last4numbers) # confirmando se esta certo os 4 numeros # 
     
     if confirmLast4 == None:
-        return 'nume4ros errados'
+        return redirect(url_for('dashboard_route.dashboard', id=gettingUser.id))
     else:
         confirmLast4.delete_instance()
         return redirect(url_for('dashboard_route.dashboard', id=gettingUser.id))

@@ -8,6 +8,7 @@ from database.database import db
 def all_configs(app):
     routes_configs(app)
     db_configs()
+    app.secret_key = 'chave'
 
 def routes_configs(app):
     app.register_blueprint(signup_route) # registrando rotas de signup #
