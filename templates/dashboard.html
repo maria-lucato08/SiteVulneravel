@@ -62,15 +62,15 @@
   
         <!-- Search Bar -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="lg:col-span-2 bg-white rounded-3xl ">
-              <div class="flex items-center max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-transparent">
+            <div class="lg:col-span-2 rounded-3xl ">
+              <div class="flex items-center max-w-md bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-transparent search-bar">
                 <input
                   type="search"
-                  placeholder="Search..."
+                  placeholder="Buscar..."
                   class="w-full px-4 py-2 text-gray-700 placeholder-gray-400 outline-none"
                 />
-                <button class="px-4 py-2 bg-blue-500 text-white font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-200">
-                  Search
+                <button class="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 text-white font-medium hover:opacity-90 transition">
+                  Buscar
                 </button>
               </div>
           </div>
@@ -365,6 +365,8 @@
               const hover = document.querySelectorAll('.hover');
               const modalAdicionarContent = document.getElementById('modal-content-adicionar');
               const modalDeletarContent = document.getElementById('modal-content-deletar');  
+              const searchBar = document.querySelector('.search-bar');
+              const searchInput = document.querySelector('input[type="search"]');
 
               if (dark) {
                 body.classList.add('bg-slate-900', 'text-slate-100');
@@ -419,7 +421,17 @@
                     el.classList.remove('bg-slate-700', 'bg-opacity-30', 'bg-slate-100');
                   });
                 });
-              
+                
+                // BARRA DE PESQUISA
+                if (searchBar) {
+                  searchBar.classList.remove('bg-white', 'border-gray-300');
+                  searchBar.classList.add('bg-slate-800', 'border-slate-600');
+                }
+
+                if (searchInput) {
+                  searchInput.classList.remove('text-gray-700', 'placeholder-gray-400');
+                  searchInput.classList.add('text-white', 'placeholder-slate-400', 'bg-slate-800');
+                }
         
               } else {
                 body.classList.remove('bg-slate-900', 'text-slate-100');
@@ -454,6 +466,16 @@
                   input.classList.remove('bg-slate-800', 'text-white', 'border-slate-600');
                 });
 
+                // BARRA DE PESQUISA
+                if (searchBar) {
+                  searchBar.classList.remove('bg-slate-800', 'border-slate-600');
+                  searchBar.classList.add('bg-white', 'border-gray-300');
+                }
+                
+                if (searchInput) {
+                  searchInput.classList.remove('text-white', 'placeholder-slate-400', 'bg-slate-800');
+                  searchInput.classList.add('text-gray-700', 'placeholder-gray-400');
+                }
               }
         
               localStorage.setItem('theme', dark ? 'dark' : 'light');
