@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, request, url_for 
+from flask import Blueprint, redirect, render_template, request, url_for, flash
 from database.models.users import User_info
 
 login_route = Blueprint('login_route', __name__)
@@ -16,8 +16,10 @@ def login_get_user():
     userVetification = User_info.get_or_none(User_info.email == email) # se existir retorma o valor, se não retorna none #
    
     if userVetification == None:
-        return 'email inexistente'
+        flash('Usuário não encontrado')
+        return redirect(url_for('login_route.login'))
     elif userVetification.password != password:
-        return 'senha errada'
+        flash('Senha incorreta')
+        return redirect(url_for('login_route.login'))
     else:
         return redirect(url_for('dashboard_route.dashboard', id=userVetification.id))
