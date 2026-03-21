@@ -59,7 +59,7 @@
   
         <!-- Search Bar -->
         <div class="flex flex-col gap-6">
-            <div class="lg:col-span-2 rounded-3xl ">
+            <div class="rounded-3xl">
               <div class="flex items-center max-w-md bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-transparent search-bar">
                 <input
                   type="search"
@@ -72,9 +72,9 @@
           </div>
 
           <!-- USER INFO -->
-          <div class="lg:col-span-2 bg-white rounded-2xl border p-6 shadow-sm settings-card">
+          <div class="bg-white rounded-2xl border p-6 shadow-md settings-card ">
             <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
-              <h2 class="text-lg font-semibold text-slate-800 mb-6 text-test">
+              <h2 class="text-lg font-semibold mb-6 text-test">
                 Informações do Usuário
               </h2>
 
@@ -102,7 +102,7 @@
           </div>
 
           <!-- CARD -->
-          <div class="bg-white rounded-2xl border p-6 shadow-sm settings-card">
+          <div class="bg-white rounded-2xl border p-6 shadow-md  settings-card">
             <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
               <h2 class="text-lg font-semibold mb-6 text-test">
                 Cartão de Crédito
@@ -264,7 +264,7 @@
           </div>
 
           <!-- CONFIGURAÇÕES -->
-          <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6 settings-card">
+          <div class="bg-white rounded-2xl border shadow-md p-6 settings-card">
             <button class="w-full flex items-center justify-between mb-6 toggle-settings">
               <h2 class="text-lg font-semibold text-test">
                 Configurações
@@ -301,7 +301,7 @@
           </div>
           
           <!-- ATIVIDADES -->
-          <div class="bg-white border-slate-100 rounded-2xl border shadow-sm p-6 settings-card">
+          <div class="bg-white rounded-2xl border shadow-md p-6 settings-card">
             <button class="w-full flex items-start justify-between toggle-settings">
               <h2 class="text-lg font-semibold text-test mb-6">
                 Atividades Recentes
@@ -346,7 +346,7 @@
               });
             });
 
-            // Modo Escuro
+            
             function setTheme(dark) {
               const body = document.body;
               const themeLabel = document.getElementById('theme-label');
@@ -359,7 +359,8 @@
               const modalDeletarContent = document.getElementById('modal-content-deletar');  
               const searchBar = document.querySelector('.search-bar');
               const searchInput = document.querySelector('input[type="search"]');
-
+              
+              // Modo Escuro
               if (dark) {
                 body.classList.add('bg-slate-900', 'text-slate-100');
                 body.classList.remove('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
@@ -376,8 +377,8 @@
                   
                 //Card
                 settingsCard.forEach(el => {
-                  el.classList.remove('bg-white', 'border-slate-100');
-                  el.classList.add('bg-[#232336]', 'border-white', 'text-slate-100');
+                  el.classList.remove('bg-white', 'border-slate-300','shadow', 'mb');
+                  el.classList.add('bg-[#232336]', 'border-white');
                 });
                   
                 //Escrita modos
@@ -425,6 +426,7 @@
                   searchInput.classList.add('text-white', 'placeholder-slate-400', 'bg-slate-800');
                 }
         
+
               } else {
                 body.classList.remove('bg-slate-900', 'text-slate-100');
                 body.classList.add('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
@@ -438,8 +440,8 @@
                 knob.style.transform = 'translateX(0)';
                   
                 settingsCard.forEach(el => {
-                  el.classList.remove('bg-[#232336]', 'border-white', 'text-slate-100');
-                  el.classList.add('bg-white', 'border-slate-100');
+                  el.classList.remove('bg-[#232336]', 'border-white');
+                  el.classList.add('bg-white', 'border-slate-300', 'shadow', 'mb');
                 });
                   
                 textTests.forEach(el => {
