@@ -72,7 +72,7 @@
           </div>
 
           <!-- USER INFO -->
-          <div class="bg-white rounded-2xl border p-6 shadow-md settings-card ">
+          <div class="rounded-2xl border p-6 shadow-md settings-card ">
             <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
               <h2 class="text-lg font-semibold mb-6 text-test">
                 Informações do Usuário
@@ -102,7 +102,7 @@
           </div>
 
           <!-- CARD -->
-          <div class="bg-white rounded-2xl border p-6 shadow-md  settings-card">
+          <div class="rounded-2xl border p-6 shadow-md settings-card">
             <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
               <h2 class="text-lg font-semibold mb-6 text-test">
                 Cartão de Crédito
@@ -264,9 +264,9 @@
           </div>
 
           <!-- CONFIGURAÇÕES -->
-          <div class="bg-white rounded-2xl border shadow-md p-6 settings-card">
+          <div class="rounded-2xl border shadow-md p-6 settings-card text-test">
             <button class="w-full flex items-center justify-between mb-6 toggle-settings">
-              <h2 class="text-lg font-semibold text-test">
+              <h2 class="text-lg font-semibold">
                 Configurações
               </h2>
             
@@ -276,16 +276,13 @@
             </button>
 
             <div class="space-y-4 settings-content hidden">
-              <button
-                class="w-full flex items-center justify-between p-3 rounded-xl hover"
-              >
-                <span class="font-medium text-test"> Alterar senha </span> >
+              <button class="w-full flex items-center justify-between p-3 rounded-xl hover">
+                <span class="font-medium"> Alterar senha </span> >
               </button>
           
-              <div
-                class="flex items-center justify-between p-3 rounded-xl hover"
-              >
-                <span class="font-medium" id="theme-label"> Tema claro </span>
+              <div class="flex items-center justify-between p-3 rounded-xl hover">
+                <span class="font-medium" id="theme-label">Tema claro </span>
+
                 <button id="theme-toggle" class="w-10 h-5 bg-gray-300 rounded-full flex items-center transition-colors duration-300">
                   <span id="theme-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
                 </button>
@@ -293,6 +290,7 @@
 
               <div class="flex items-center justify-between p-3 rounded-xl hover">
                 <span class="font-medium"> Notificações </span>
+
                 <button id="notif-toggle" class="w-10 h-5 bg-green-400 rounded-full flex items-center transition-colors duration-300">
                   <span id="notif-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
                 </button>
@@ -301,9 +299,9 @@
           </div>
           
           <!-- ATIVIDADES -->
-          <div class="bg-white rounded-2xl border shadow-md p-6 settings-card">
+          <div class="rounded-2xl border shadow-md p-6 settings-card text-test">
             <button class="w-full flex items-start justify-between toggle-settings">
-              <h2 class="text-lg font-semibold text-test mb-6">
+              <h2 class="text-lg font-semibold  mb-6">
                 Atividades Recentes
               </h2>
 
@@ -346,7 +344,6 @@
               });
             });
 
-            
             function setTheme(dark) {
               const body = document.body;
               const themeLabel = document.getElementById('theme-label');
