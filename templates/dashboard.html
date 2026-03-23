@@ -1,656 +1,614 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!doctype html>
+  <html lang="pt-BR">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>SecureHub</title>
+      <title>SecureHub</title>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
+      <!-- Tailwind -->
+      <script src="https://cdn.tailwindcss.com"></script>
+    </head>
 
-    <body
-    class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/30"
-  >
-    <!-- HEADER -->
-    <header class="sticky top-0 z-50 backdrop-blur-lg border-b border-slate-200">
+      <body
+      class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/30"
+    >
+      <!-- HEADER -->
+      <header class="sticky top-0 z-50 backdrop-blur-lg border-b border-slate-200">
 
-      <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
-        <div class="flex items-center gap-3">
+        <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
+          <div class="flex items-center gap-3">
 
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white">
-            <span class="font-bold">S</span>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center text-white">
+              <span class="font-bold">S</span>
+            </div>
+    
+            <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+              SecureHub
+            </span>
           </div>
-  
-          <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
-            SecureHub
-          </span>
+    
+          <div class="flex items-center gap-3">
+            <div class="hidden sm:flex items-center gap-3 text-white">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center font-semibold">
+                {{ name[0].upper() }}
+              </div>
+    
+              <span class="font-medium text-test">{{ name }}</span>
+            </div>
+    
+            <a href="{{ url_for('login_route.login') }}" class="ml-4">
+              <button class="border px-3 py-1 rounded-lg text-test hover">
+                Logout
+              </button>
+            </a>
+          </div>
         </div>
-  
-        <div class="flex items-center gap-3">
-          <div class="hidden sm:flex items-center gap-3 text-white">
-            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center font-semibold">
-              {{ name[0].upper() }}
-            </div>
-  
-            <span class="font-medium text-test">{{ name }}</span>
-          </div>
-  
-          <a href="{{ url_for('login_route.login') }}" class="ml-4">
-            <button class="border px-3 py-1 rounded-lg text-test hover">
-              Logout
-            </button>
-          </a>
-        </div>
-      </div>
-    </header>
+      </header>
 
 
-      <!-- MAIN -->
-      <main class="max-w-6xl mx-auto px-4 py-8">
-        <!-- HERO -->
-        <section class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 text-white">
-          <h1 class="text-3xl font-bold">Olá, {{ name }}! 👋</h1>
-          <p class="mt-2 text-blue-100">
-            Bem-vindo de volta! Gerencie sua conta com segurança.
-          </p>
-        </section> 
-  
-        <!-- Search Bar -->
-        <div class="flex flex-col gap-6">
-            <div class="rounded-3xl">
-              <div class="items-center gap-10"> 
-              <div class="flex items-center max-w-md bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-transparent search-bar">
-                <input
-                  type="search"
-                  placeholder="Buscar..."
-                  class="w-full px-4 py-2 text-gray-700 placeholder-gray-400 outline-none"
-                  id="bdp" 
-                  onkeyup="procurar()"/>
-                <button class="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 text-white font-medium hover:opacity-90 transition">
-                  Buscar
-                </button>
-              </div>
-               <p id="p"></p>
-            </div>
-          </div>
-
-
-          <!-- USER INFO -->
-          <div class="rounded-2xl border p-6 shadow-md settings-card ">
-            <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
-              <h2 class="text-lg font-semibold mb-6 text-test">
-                Informações do Usuário
-              </h2>
-
-              <span class="transition-transform duration-300 arrow-settings">
-                >
-              </span>
-            </button>
-
-            <div class="space-y-4 text-test settings-content hidden">
-              <div>
-                <p class="text-sm text-slate-500">Nome</p>
-                <p class="font-medium">{{ name }}</p>
-              </div>
-
-              <div>
-                <p class="text-sm text-slate-500">Email</p>
-                <p class="font-medium">{{ email }}</p>
-              </div>
-
-              <div>
-                <p class="text-sm text-slate-500">Data de criação</p>
-                <p class="font-medium">15 de Janeiro, 2024</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- CARD -->
-          <div class="rounded-2xl border p-6 shadow-md settings-card">
-            <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
-              <h2 class="text-lg font-semibold mb-6 text-test">
-                Cartão de Crédito
-              </h2>
-
-              <span class="transition-transform duration-300 arrow-settings">
-                >
-              </span>
-            </button>
-            
-            {% for card in cards %}
-            <div class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 rounded-2xl p-6 text-white mb-6 settings-content hidden">
-              <p class="text-xl tracking-widest mb-4">{{ card.numberCard }}</p>
-
-              <div class="flex justify-between">
-                <div>
-                  <p class="text-xs text-slate-400">Titular</p>
-                  <p>{{ card.holderName }}</p>
-                </div>
-
-                <div>
-                  <p class="text-xs text-slate-400">Validade</p>
-                  <p>{{ card.expiration }}</p>
-                </div>
-
-                <div>
-                  <p class="text-xs text-slate-400">CVV</p>
-                  <p>123</p>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-
-            <div class="settings-content hidden"> 
-              <button class="border px-3 py-2 rounded-xl w-full mb-2" onclick="openModalAdicionar()">
-                Adicionar cartão
-              </button>
-
-            <!-- MODAL ADD CARTÃO -->
-            <div id="modalAdicionar" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
-              <div id="modal-content-adicionar" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
-                
-                <!-- BOTÃO FECHAR -->
-                <button onclick="closeModalAdicionar()" 
-                  class="absolute top-3 right-3 text-gray-500">
-                  ✕
-                </button>
-
-                <h2 class="text-xl font-semibold mb-4">Adicionar Cartão</h2>
-
-                <!-- FORM -->
-                <form class="space-y-4" method="POST" action="{{ url_for('dashboard_route.dashboard_new_card') }}">
-                  <input type="hidden" name="id" value={{ id }} />
-
-                  <!-- Número do cartão -->
-                  <div>
-                    <label class="block text-sm text-gray-600">Número do cartão</label>
-                    <input 
-                      id="card-number"
-                      name="cardNumber"
+        <!-- MAIN -->
+        <main class="max-w-6xl mx-auto px-4 py-8">
+          <!-- HERO -->
+          <section class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 text-white">
+            <h1 class="text-3xl font-bold">Olá, {{ name }}! 👋</h1>
+            <p class="mt-2 text-blue-100">
+              Bem-vindo de volta! Gerencie sua conta com segurança.
+            </p>
+          </section> 
+    
+          <!-- Search Bar -->
+          <div class="flex flex-col gap-6">
+              <div class="rounded-3xl">
+                <div class="items-center gap-10"> 
+                  <form method="GET"  action="{{ url_for('dashboard_route.dashboard', id=id) }}" >
+                    <div class="flex items-center max-w-md bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-transparent search-bar">
+                      <input
                       type="text"
-                      inputmode="numeric"
-                      placeholder="0000 0000 0000 0000"
-                      maxlength="19"
-                      class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
+                      name="search"
+                      placeholder="Buscar..."
+                      value="{{ search if search else '' }}"
+                      class="w-full px-4 py-2 text-gray-700 placeholder-gray-400 outline-none"/>
+                    <button type="submit" class="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 text-white       font-medium hover:opacity-90 transition">
+                      Buscar
+                    </button>
                   </div>
-
-                  <!-- Titular -->
-                  <div>
-                    <label class="block text-sm text-gray-600">Titular</label>
-                    <input 
-                      name="holderName"
-                      type="text"
-                      placeholder="Nome como no cartão"
-                      class="w-full mt-1 p-3 border rounded-xl">
-                  </div>
-
-                  <!-- Validade + CVV -->
-                  <div class="flex gap-4">
-                    
-                    <!-- Validade -->
-                    <div class="flex-1">
-                      <label class="block text-sm text-gray-600">Validade</label>
-                      <input 
-                        id="card-exp"
-                        name="expiration"
-                        type="text"
-                        inputmode="numeric"
-                        placeholder="MM/AA"
-                        maxlength="5"
-                        class="w-full mt-1 p-3 border rounded-xl">
-                    </div>
-
-                    <!-- CVV -->
-                    <div class="w-24">
-                      <label class="block text-sm text-gray-600">CVV</label>
-                      <input 
-                        id="card-cvv"
-                        name="cvv"
-                        type="text"
-                        inputmode="numeric"
-                        placeholder="123"
-                        maxlength="4"
-                        class="w-full mt-1 p-3 border rounded-xl">
-                    </div>
-                  </div>
-
-                  <!-- BOTÃO -->
-                  <button type="submit"
-                    class="w-full bg-gradient-to-r from-blue-600 to-violet-600 text-white py-3 rounded-xl">
-                    Salvar Cartão
-                  </button>
                 </form>
+                {% if search %}
+                  <p>Você procurou por: {{ search | safe }}</p>
+                {% endif %}
               </div>
             </div>
 
-              <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full" onclick="openModalDeletar()"> 
-                Remover cartão
+
+            <!-- USER INFO -->
+            <div class="rounded-2xl border p-6 shadow-md settings-card ">
+              <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
+                <h2 class="text-lg font-semibold mb-6 text-test">
+                  Informações do Usuário
+                </h2>
+
+                <span class="transition-transform duration-300 arrow-settings">
+                  >
+                </span>
               </button>
+
+              <div class="space-y-4 text-test settings-content hidden">
+                <div>
+                  <p class="text-sm text-slate-500">Nome</p>
+                  <p class="font-medium">{{ name }}</p>
+                </div>
+
+                <div>
+                  <p class="text-sm text-slate-500">Email</p>
+                  <p class="font-medium">{{ email }}</p>
+                </div>
+
+                <div>
+                  <p class="text-sm text-slate-500">Data de criação</p>
+                  <p class="font-medium">15 de Janeiro, 2024</p>
+                </div>
+              </div>
             </div>
 
-             <!-- MODAL DELETAR CARTÃO -->
-            <div id="modalDeletar" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
-              <div id="modal-content-deletar" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
-                
-                <!-- BOTÃO FECHAR -->
-                <button onclick="closeModalDeletar()" 
-                  class="absolute top-3 right-3 text-gray-500">
-                  ✕
-                </button>
+            <!-- CARD -->
+            <div class="rounded-2xl border p-6 shadow-md settings-card">
+              <button class="w-full flex items-start justify-between mb-6 toggle-settings" >
+                <h2 class="text-lg font-semibold mb-6 text-test">
+                  Cartão de Crédito
+                </h2>
 
-                <h2 class="text-xl font-semibold mb-4">Deletar Cartão</h2>
-                
-                <!-- FORM -->
-                <form class="space-y-4" method="POST" action="{{ url_for('dashboard_route.dashboard_delete_card') }}">
-                  <input type="hidden" name="id" value={{ id }} />
+                <span class="transition-transform duration-300 arrow-settings">
+                  >
+                </span>
+              </button>
+              
+              {% for card in cards %}
+              <div class="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-8 mb-8 rounded-2xl p-6 text-white mb-6 settings-content hidden">
+                <p class="text-xl tracking-widest mb-4">{{ card['numberCard'] }}</p>
 
-                  <!-- Número do cartão -->
+                <div class="flex justify-between">
                   <div>
-                    <label class="block text-sm text-gray-600">Número do cartão</label>
-                    <input 
-                      id="card-4number"
-                      name="card4Number"
-                      type="text"
-                      inputmode="numeric"
-                      placeholder="Digite os 4 ultimos números do cartão"
-                      maxlength="4"
-                      class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
-                  </div>   
+                    <p class="text-xs text-slate-400">Titular</p>
+                    <p>{{ card['holderName'] }}</p>
+                  </div>
 
-                  <!-- BOTÃO -->
-                  <button type="submit"
-                    class="w-full bg-gradient-to-r from-blue-600 to-violet-600 text-white py-3 rounded-xl">
-                    Deletar Cartão
-                  </button>
-                </form>
+                  <div>
+                    <p class="text-xs text-slate-400">Validade</p>
+                    <p>{{ card['expiration'] }}</p>
+                  </div>
+
+                  <div>
+                    <p class="text-xs text-slate-400">CVV</p>
+                    <p>{{ card['cvv'] }}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+              {% endfor %}
 
-          <!-- CONFIGURAÇÕES -->
-          <div class="rounded-2xl border shadow-md p-6 settings-card text-test">
-            <button class="w-full flex items-center justify-between mb-6 toggle-settings">
-              <h2 class="text-lg font-semibold">
-                Configurações
-              </h2>
-            
-              <span class="transition-transform duration-300 arrow-settings">
-                >
-              </span>
-            </button>
-
-            <div class="space-y-4 settings-content hidden">
-              <button class="w-full flex items-center justify-between p-3 rounded-xl hover">
-                <span class="font-medium"> Alterar senha </span> >
-              </button>
-          
-              <div class="flex items-center justify-between p-3 rounded-xl hover">
-                <span class="font-medium" id="theme-label">Tema claro </span>
-
-                <button id="theme-toggle" class="w-10 h-5 bg-gray-300 rounded-full flex items-center transition-colors duration-300">
-                  <span id="theme-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
+              <div class="settings-content hidden"> 
+                <button class="border px-3 py-2 rounded-xl w-full mb-2" onclick="openModalAdicionar()">
+                  Adicionar cartão
                 </button>
-              </div>
 
-              <div class="flex items-center justify-between p-3 rounded-xl hover">
-                <span class="font-medium"> Notificações </span>
-
-                <button id="notif-toggle" class="w-10 h-5 bg-green-400 rounded-full flex items-center transition-colors duration-300">
-                  <span id="notif-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
-                </button>
-              </div> 
-            </div>
-          </div>
-          
-          <!-- ATIVIDADES -->
-          <div class="rounded-2xl border shadow-md p-6 settings-card text-test">
-            <button class="w-full flex items-start justify-between toggle-settings">
-              <h2 class="text-lg font-semibold  mb-6">
-                Atividades Recentes
-              </h2>
-
-              <span class="transition-transform duration-300 arrow-settings">
-                >
-              </span>
-            </button>
-
-            <div class="space-y-4 settings-content hidden">
-              <div class="pb-4 border-b">
-                <p class="font-medium">Login realizado</p>
-                <p class="text-sm text-slate-500">Há 2 minutos</p>
-              </div>
-
-              <div class="pb-4 border-b">
-                <p class="font-medium">Cartão atualizado</p>
-                <p class="text-sm text-slate-500">Há 3 dias</p>
-              </div>
-
-              <div>
-                <p class="font-medium">Senha alterada</p>
-                <p class="text-sm text-slate-500">Há 1 semana</p>
-              </div>
-            </div>
-          </div>
-
-          <script>
-            // Setas >
-            document.querySelectorAll('.toggle-settings').forEach(btn => {
-              btn.addEventListener('click', () => {
-                const card = btn.closest('.settings-card');
-                const contents = card.querySelectorAll('.settings-content');
-                const arrow = card.querySelector('.arrow-settings');
-
-                contents.forEach(content => {
-                  content.classList.toggle('hidden');
-                });
-
-                arrow.classList.toggle('rotate-90');
-              });
-            });
-           
-            document.addEventListener('DOMContentLoaded', function () {
-              const input = document.getElementById('bdp');
-              const output = document.getElementById('p');
-              
-              input.addEventListener('input', function () {
-             output.textContent = `Você está buscando por:  '${input.value}' `;
-             p.classList.add('text-x', 'font-semibold', 'text-test','mt-4');
-             console.log(input.value);    
-             });
-             });
-
-             document.addEventListener('DOMContentLoaded', function () {
-              const input = document.getElementById('bdp');
-              const output = document.getElementById('p');
-              
-              input.addEventListener('input', function () {
-                output.textContent = `Você está buscando por:  '${input.value}' `;
-                p.classList.add('text-x', 'font-semibold', 'text-test','mt-4');
-                console.log(input.value);    
-                });
-            });
-            
-            
-            /*função de busca aparece automaticamente na tela
-            // barra de pesquisa ativada com o botão
-              function procurar() {
-                let input = document.getElementById('bdp').value.toLowerCase();
-                let p = document.getElementById('p');
-                
-                p.textContent = `Você está buscando por: ${input}`;
-                p.classList.add('font-semibold', 'text-test');
-                
-                let card = document.getElementsByClassName('settings-card');
-                
-                for (let i = 0; i < card.length; i++) {
-                  let info = card[i].getElementsByClassName('settings-content')[0];
+              <!-- MODAL ADD CARTÃO -->
+              <div id="modalAdicionar" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+                <div id="modal-content-adicionar" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
                   
-                  if (info.innerHTML.toLowerCase().indexOf(input) > -1) {
-                    card[i].style.display = "";
-                  } else {
-                    card[i].style.display = "none";
+                  <!-- BOTÃO FECHAR -->
+                  <button onclick="closeModalAdicionar()" 
+                    class="absolute top-3 right-3 text-gray-500">
+                    ✕
+                  </button>
+
+                  <h2 class="text-xl font-semibold mb-4">Adicionar Cartão</h2>
+
+                  <!-- FORM -->
+                  <form class="space-y-4" method="POST" action="{{ url_for('dashboard_route.dashboard_new_card') }}">
+                    <input type="hidden" name="id" value={{ id }} />
+
+                    <!-- Número do cartão -->
+                    <div>
+                      <label class="block text-sm text-gray-600">Número do cartão</label>
+                      <input 
+                        id="card-number"
+                        name="cardNumber"
+                        type="text"
+                        inputmode="numeric"
+                        placeholder="0000 0000 0000 0000"
+                        maxlength="19"
+                        class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
+                    </div>
+
+                    <!-- Titular -->
+                    <div>
+                      <label class="block text-sm text-gray-600">Titular</label>
+                      <input 
+                        name="holderName"
+                        type="text"
+                        placeholder="Nome como no cartão"
+                        class="w-full mt-1 p-3 border rounded-xl">
+                    </div>
+
+                    <!-- Validade + CVV -->
+                    <div class="flex gap-4">
+                      
+                      <!-- Validade -->
+                      <div class="flex-1">
+                        <label class="block text-sm text-gray-600">Validade</label>
+                        <input 
+                          id="card-exp"
+                          name="expiration"
+                          type="text"
+                          inputmode="numeric"
+                          placeholder="MM/AA"
+                          maxlength="5"
+                          class="w-full mt-1 p-3 border rounded-xl">
+                      </div>
+
+                      <!-- CVV -->
+                      <div class="w-24">
+                        <label class="block text-sm text-gray-600">CVV</label>
+                        <input 
+                          id="card-cvv"
+                          name="cvv"
+                          type="text"
+                          inputmode="numeric"
+                          placeholder="123"
+                          maxlength="4"
+                          class="w-full mt-1 p-3 border rounded-xl">
+                      </div>
+                    </div>
+
+                    <!-- BOTÃO -->
+                    <button type="submit"
+                      class="w-full bg-gradient-to-r from-blue-600 to-violet-600 text-white py-3 rounded-xl">
+                      Salvar Cartão
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+                <button class="border border-red-300 text-red-600 px-3 py-2 rounded-xl w-full" onclick="openModalDeletar()"> 
+                  Remover cartão
+                </button>
+              </div>
+
+              <!-- MODAL DELETAR CARTÃO -->
+              <div id="modalDeletar" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+                <div id="modal-content-deletar" class="bg-white w-full max-w-md p-6 rounded-2xl relative">
+                  
+                  <!-- BOTÃO FECHAR -->
+                  <button onclick="closeModalDeletar()" 
+                    class="absolute top-3 right-3 text-gray-500">
+                    ✕
+                  </button>
+
+                  <h2 class="text-xl font-semibold mb-4">Deletar Cartão</h2>
+                  
+                  <!-- FORM -->
+                  <form class="space-y-4" method="POST" action="{{ url_for('dashboard_route.dashboard_delete_card') }}">
+                    <input type="hidden" name="id" value={{ id }} />
+
+                    <!-- Número do cartão -->
+                    <div>
+                      <label class="block text-sm text-gray-600">Número do cartão</label>
+                      <input 
+                        id="card-4number"
+                        name="card4Number"
+                        type="text"
+                        inputmode="numeric"
+                        placeholder="Digite os 4 ultimos números do cartão"
+                        maxlength="4"
+                        class="w-full mt-1 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900">
+                    </div>   
+
+                    <!-- BOTÃO -->
+                    <button type="submit"
+                      class="w-full bg-gradient-to-r from-blue-600 to-violet-600 text-white py-3 rounded-xl">
+                      Deletar Cartão
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONFIGURAÇÕES -->
+            <div class="rounded-2xl border shadow-md p-6 settings-card text-test">
+              <button class="w-full flex items-center justify-between mb-6 toggle-settings">
+                <h2 class="text-lg font-semibold">
+                  Configurações
+                </h2>
+              
+                <span class="transition-transform duration-300 arrow-settings">
+                  >
+                </span>
+              </button>
+
+              <div class="space-y-4 settings-content hidden">
+                <button class="w-full flex items-center justify-between p-3 rounded-xl hover">
+                  <span class="font-medium"> Alterar senha </span> >
+                </button>
+            
+                <div class="flex items-center justify-between p-3 rounded-xl hover">
+                  <span class="font-medium" id="theme-label">Tema claro </span>
+
+                  <button id="theme-toggle" class="w-10 h-5 bg-gray-300 rounded-full flex items-center transition-colors duration-300">
+                    <span id="theme-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
+                  </button>
+                </div>
+
+                <div class="flex items-center justify-between p-3 rounded-xl hover">
+                  <span class="font-medium"> Notificações </span>
+
+                  <button id="notif-toggle" class="w-10 h-5 bg-green-400 rounded-full flex items-center transition-colors duration-300">
+                    <span id="notif-toggle-knob" class="w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300"></span>
+                  </button>
+                </div> 
+              </div>
+            </div>
+            
+            <!-- ATIVIDADES -->
+            <div class="rounded-2xl border shadow-md p-6 settings-card text-test">
+              <button class="w-full flex items-start justify-between toggle-settings">
+                <h2 class="text-lg font-semibold  mb-6">
+                  Atividades Recentes
+                </h2>
+
+                <span class="transition-transform duration-300 arrow-settings">
+                  >
+                </span>
+              </button>
+
+              <div class="space-y-4 settings-content hidden">
+                <div class="pb-4 border-b">
+                  <p class="font-medium">Login realizado</p>
+                  <p class="text-sm text-slate-500">Há 2 minutos</p>
+                </div>
+
+                <div class="pb-4 border-b">
+                  <p class="font-medium">Cartão atualizado</p>
+                  <p class="text-sm text-slate-500">Há 3 dias</p>
+                </div>
+
+                <div>
+                  <p class="font-medium">Senha alterada</p>
+                  <p class="text-sm text-slate-500">Há 1 semana</p>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              // Setas >
+              document.querySelectorAll('.toggle-settings').forEach(btn => {
+                btn.addEventListener('click', () => {
+                  const card = btn.closest('.settings-card');
+                  const contents = card.querySelectorAll('.settings-content');
+                  const arrow = card.querySelector('.arrow-settings');
+
+                  contents.forEach(content => {
+                    content.classList.toggle('hidden');
+                  });
+
+                  arrow.classList.toggle('rotate-90');
+                });
+              });
+                
+                function setTheme(dark) {
+                const body = document.body;
+                const themeLabel = document.getElementById('theme-label');
+                const themeToggle = document.getElementById('theme-toggle');
+                const knob = document.getElementById('theme-toggle-knob');
+                const settingsCard = document.querySelectorAll('.settings-card');
+                const textTests = document.querySelectorAll('.text-test');
+                const hover = document.querySelectorAll('.hover');
+                const modalAdicionarContent = document.getElementById('modal-content-adicionar');
+                const modalDeletarContent = document.getElementById('modal-content-deletar');  
+                const searchBar = document.querySelector('.search-bar');
+                const searchInput = document.querySelector('input[type="text"]');
+                
+                // Modo Escuro
+                if (dark) {
+                  body.classList.add('bg-slate-900', 'text-slate-100');
+                  body.classList.remove('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
+        
+                  //Escrita
+                  themeLabel.textContent = 'Tema escuro';
+                  themeLabel.classList.remove('text-slate-700');
+                  themeLabel.classList.add('text-slate-100');
+
+                  //Botão do modos
+                  themeToggle.classList.add('bg-green-400');
+                  themeToggle.classList.remove('bg-gray-300');
+                  knob.style.transform = 'translateX(100%)';
+                    
+                  //Card
+                  settingsCard.forEach(el => {
+                    el.classList.remove('bg-white', 'border-slate-300','shadow', 'mb');
+                    el.classList.add('bg-[#232336]', 'border-white');
+                  });
+                    
+                  //Escrita modos
+                  textTests.forEach(el => {
+                    el.classList.remove('text-slate-700');
+                    el.classList.add('text-slate-100');
+                  });
+
+                  [modalAdicionarContent, modalDeletarContent].forEach(modal => {
+                  if (!modal) return;
+
+                  modal.classList.remove('bg-white');
+                  modal.classList.add('bg-[#232336]', 'text-slate-100');
+                  });
+
+                  document.querySelectorAll('#modalAdicionar input, #modalDeletar input').forEach(input => {
+                    input.classList.add('bg-slate-800', 'text-white', 'border-slate-600');
+                  });
+
+                  //Hover
+                  hover.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                      if (document.body.classList.contains('bg-slate-900')) {
+                        el.classList.add('bg-slate-700', 'bg-opacity-30');
+                        el.classList.remove('bg-slate-100');
+                      } else {
+                        el.classList.add('bg-slate-100');
+                        el.classList.remove('bg-slate-700', 'bg-opacity-30');
+                      }
+                    });
+
+                    el.addEventListener('mouseleave', () => {
+                      el.classList.remove('bg-slate-700', 'bg-opacity-30', 'bg-slate-100');
+                    });
+                  });
+                  
+                  // BARRA DE PESQUISA
+                  if (searchBar) {
+                    searchBar.classList.remove('bg-white', 'border-gray-300');
+                    searchBar.classList.add('bg-slate-800', 'border-slate-600');
+                  }
+
+                  if (searchInput) {
+                    searchInput.classList.remove('text-gray-700', 'placeholder-gray-400');
+                    searchInput.classList.add('text-white', 'placeholder-slate-400', 'bg-slate-800');
+                  }
+          
+
+                } else {
+                  body.classList.remove('bg-slate-900', 'text-slate-100');
+                  body.classList.add('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
+                    
+                  themeLabel.textContent = 'Tema claro';
+                  themeLabel.classList.remove('text-slate-100');
+                  themeLabel.classList.add('text-slate-700');
+
+                  themeToggle.classList.add('bg-gray-300');
+                  themeToggle.classList.remove('bg-green-400');
+                  knob.style.transform = 'translateX(0)';
+                    
+                  settingsCard.forEach(el => {
+                    el.classList.remove('bg-[#232336]', 'border-white');
+                    el.classList.add('bg-white', 'border-slate-300', 'shadow', 'mb');
+                  });
+                    
+                  textTests.forEach(el => {
+                    el.classList.remove('text-slate-100');
+                    el.classList.add('text-slate-700');
+                  });
+
+                  [modalAdicionarContent, modalDeletarContent].forEach(modal => {
+                  if (!modal) return;
+
+                  modal.classList.remove('bg-[#232336]', 'text-slate-100');
+                  modal.classList.add('bg-white');
+                  });
+
+                  document.querySelectorAll('#modalAdicionar input, #modalDeletar input').forEach(input => {
+                    input.classList.remove('bg-slate-800', 'text-white', 'border-slate-600');
+                  });
+
+                  // BARRA DE PESQUISA
+                  if (searchBar) {
+                    searchBar.classList.remove('bg-slate-800', 'border-slate-600');
+                    searchBar.classList.add('bg-white', 'border-gray-300');
+                  }
+                  
+                  if (searchInput) {
+                    searchInput.classList.remove('text-white', 'placeholder-slate-400', 'bg-slate-800');
+                    searchInput.classList.add('text-gray-700', 'placeholder-gray-400');
                   }
                 }
+          
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
               }
-              */
-              
-              function setTheme(dark) {
-              const body = document.body;
-              const themeLabel = document.getElementById('theme-label');
-              const themeToggle = document.getElementById('theme-toggle');
-              const knob = document.getElementById('theme-toggle-knob');
-              const settingsCard = document.querySelectorAll('.settings-card');
-              const textTests = document.querySelectorAll('.text-test');
-              const hover = document.querySelectorAll('.hover');
-              const modalAdicionarContent = document.getElementById('modal-content-adicionar');
-              const modalDeletarContent = document.getElementById('modal-content-deletar');  
-              const searchBar = document.querySelector('.search-bar');
-              const searchInput = document.querySelector('input[type="search"]');
-              
-              // Modo Escuro
-              if (dark) {
-                body.classList.add('bg-slate-900', 'text-slate-100');
-                body.classList.remove('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
-      
-                //Escrita
-                themeLabel.textContent = 'Tema escuro';
-                themeLabel.classList.remove('text-slate-700');
-                themeLabel.classList.add('text-slate-100');
-
-                //Botão do modos
-                themeToggle.classList.add('bg-green-400');
-                themeToggle.classList.remove('bg-gray-300');
-                knob.style.transform = 'translateX(100%)';
-                  
-                //Card
-                settingsCard.forEach(el => {
-                  el.classList.remove('bg-white', 'border-slate-300','shadow', 'mb');
-                  el.classList.add('bg-[#232336]', 'border-white');
+          
+              // Funcionar
+              document.addEventListener('DOMContentLoaded', function () {
+                const savedTheme = localStorage.getItem('theme');
+                setTheme(savedTheme === 'dark');
+          
+                document.getElementById('theme-toggle').addEventListener('click', function () {
+                  const isDark = localStorage.getItem('theme') === 'dark';
+                  setTheme(!isDark);
                 });
-                  
-                //Escrita modos
-                textTests.forEach(el => {
-                  el.classList.remove('text-slate-700');
-                  el.classList.add('text-slate-100');
-                });
-
-                [modalAdicionarContent, modalDeletarContent].forEach(modal => {
-                if (!modal) return;
-
-                modal.classList.remove('bg-white');
-                modal.classList.add('bg-[#232336]', 'text-slate-100');
-                });
-
-                document.querySelectorAll('#modalAdicionar input, #modalDeletar input').forEach(input => {
-                  input.classList.add('bg-slate-800', 'text-white', 'border-slate-600');
-                });
-
-                //Hover
-                hover.forEach(el => {
-                  el.addEventListener('mouseenter', () => {
-                    if (document.body.classList.contains('bg-slate-900')) {
-                      el.classList.add('bg-slate-700', 'bg-opacity-30');
-                      el.classList.remove('bg-slate-100');
-                    } else {
-                      el.classList.add('bg-slate-100');
-                      el.classList.remove('bg-slate-700', 'bg-opacity-30');
-                    }
-                  });
-
-                  el.addEventListener('mouseleave', () => {
-                    el.classList.remove('bg-slate-700', 'bg-opacity-30', 'bg-slate-100');
-                  });
-                });
-                
-                // BARRA DE PESQUISA
-                if (searchBar) {
-                  searchBar.classList.remove('bg-white', 'border-gray-300');
-                  searchBar.classList.add('bg-slate-800', 'border-slate-600');
-                }
-
-                if (searchInput) {
-                  searchInput.classList.remove('text-gray-700', 'placeholder-gray-400');
-                  searchInput.classList.add('text-white', 'placeholder-slate-400', 'bg-slate-800');
-                }
-        
-
-              } else {
-                body.classList.remove('bg-slate-900', 'text-slate-100');
-                body.classList.add('bg-gradient-to-br', 'from-slate-50', 'via-blue-50/30', 'to-violet-50/30', 'text-slate-800');
-                  
-                themeLabel.textContent = 'Tema claro';
-                themeLabel.classList.remove('text-slate-100');
-                themeLabel.classList.add('text-slate-700');
-
-                themeToggle.classList.add('bg-gray-300');
-                themeToggle.classList.remove('bg-green-400');
-                knob.style.transform = 'translateX(0)';
-                  
-                settingsCard.forEach(el => {
-                  el.classList.remove('bg-[#232336]', 'border-white');
-                  el.classList.add('bg-white', 'border-slate-300', 'shadow', 'mb');
-                });
-                  
-                textTests.forEach(el => {
-                  el.classList.remove('text-slate-100');
-                  el.classList.add('text-slate-700');
-                });
-
-                [modalAdicionarContent, modalDeletarContent].forEach(modal => {
-                if (!modal) return;
-
-                modal.classList.remove('bg-[#232336]', 'text-slate-100');
-                modal.classList.add('bg-white');
-                });
-
-                document.querySelectorAll('#modalAdicionar input, #modalDeletar input').forEach(input => {
-                  input.classList.remove('bg-slate-800', 'text-white', 'border-slate-600');
-                });
-
-                // BARRA DE PESQUISA
-                if (searchBar) {
-                  searchBar.classList.remove('bg-slate-800', 'border-slate-600');
-                  searchBar.classList.add('bg-white', 'border-gray-300');
-                }
-                
-                if (searchInput) {
-                  searchInput.classList.remove('text-white', 'placeholder-slate-400', 'bg-slate-800');
-                  searchInput.classList.add('text-gray-700', 'placeholder-gray-400');
-                }
-              }
-        
-              localStorage.setItem('theme', dark ? 'dark' : 'light');
-            }
-        
-            // Funcionar
-            document.addEventListener('DOMContentLoaded', function () {
-              const savedTheme = localStorage.getItem('theme');
-              setTheme(savedTheme === 'dark');
-        
-              document.getElementById('theme-toggle').addEventListener('click', function () {
-                const isDark = localStorage.getItem('theme') === 'dark';
-                setTheme(!isDark);
-              });
-            });
-
-            // Botão de notificações
-            function setNotif(on) {
-              const notifToggle = document.getElementById('notif-toggle');
-              const knob = document.getElementById('notif-toggle-knob');
-        
-              if (on) {
-                notifToggle.classList.add('bg-green-400');
-                notifToggle.classList.remove('bg-gray-300');
-                knob.style.transform = 'translateX(100%)';
-              } else {
-                notifToggle.classList.remove('bg-green-400');
-                notifToggle.classList.add('bg-gray-300');
-                knob.style.transform = 'translateX(0)';
-              }
-        
-              localStorage.setItem('notif', on ? 'on' : 'off');
-            }
-        
-            document.addEventListener('DOMContentLoaded', function () {
-              const savedNotif = localStorage.getItem('notif');
-              setNotif(savedNotif !== 'off');
-        
-              document.getElementById('notif-toggle').addEventListener('click', function () {
-                const isOn = localStorage.getItem('notif') !== 'off';
-                setNotif(!isOn);
-              });
-            });
-
-            // Modals
-              const modalAdicionar = document.getElementById("modalAdicionar");
-
-              function openModalAdicionar() {
-                modalAdicionar.classList.remove("hidden");
-                modalAdicionar.classList.add("flex");
-              }
-
-              function closeModalAdicionar() {
-                modalAdicionar.classList.add("hidden");
-                modalAdicionar.classList.remove("flex");
-                modalAdicionar.querySelectorAll("input").forEach(input => input.value = ""); // limpa os campos
-              }
-
-              // fechar clicando fora
-              modalAdicionar.addEventListener("click", (e) => {
-                if (e.target === modalAdicionar) {
-                  
-                  closeModal();
-                }
               });
 
-              const modalDeletar = document.getElementById("modalDeletar");
-
-              function openModalDeletar() {
-                modalDeletar.classList.remove("hidden");
-                modalDeletar.classList.add("flex");
-              }
-
-              function closeModalDeletar() {
-                modalDeletar.classList.add("hidden");
-                modalDeletar.classList.remove("flex");
-                modalDeletar.querySelectorAll("input").forEach(input => input.value = ""); // limpa os campos
-              }
-
-              // fechar clicando fora
-              modalDeletar.addEventListener("click", (e) => {
-                if (e.target === modalDeletar) {
-                  
-                  closeModalDeletar();
+              // Botão de notificações
+              function setNotif(on) {
+                const notifToggle = document.getElementById('notif-toggle');
+                const knob = document.getElementById('notif-toggle-knob');
+          
+                if (on) {
+                  notifToggle.classList.add('bg-green-400');
+                  notifToggle.classList.remove('bg-gray-300');
+                  knob.style.transform = 'translateX(100%)';
+                } else {
+                  notifToggle.classList.remove('bg-green-400');
+                  notifToggle.classList.add('bg-gray-300');
+                  knob.style.transform = 'translateX(0)';
                 }
+          
+                localStorage.setItem('notif', on ? 'on' : 'off');
+              }
+          
+              document.addEventListener('DOMContentLoaded', function () {
+                const savedNotif = localStorage.getItem('notif');
+                setNotif(savedNotif !== 'off');
+          
+                document.getElementById('notif-toggle').addEventListener('click', function () {
+                  const isOn = localStorage.getItem('notif') !== 'off';
+                  setNotif(!isOn);
+                });
               });
 
-              // CARTÃO (0000 0000 0000 0000)
-              const cardNumber = document.getElementById('card-number');
+              // Modals
+                const modalAdicionar = document.getElementById("modalAdicionar");
 
-              cardNumber.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, ''); // só números
-
-                // limita a 16 dígitos (padrão real)
-                value = value.substring(0, 16);
-
-                // adiciona espaços a cada 4 números
-                value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
-
-                e.target.value = value;
-              });
-
-              // VALIDADE (MM/AA)
-              const cardExp = document.getElementById('card-exp');
-
-              cardExp.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-
-                // limita a 4 números
-                value = value.substring(0, 4);
-
-                // adiciona /
-                if (value.length > 2) {
-                  value = value.replace(/(\d{2})(\d+)/, '$1/$2');
+                function openModalAdicionar() {
+                  modalAdicionar.classList.remove("hidden");
+                  modalAdicionar.classList.add("flex");
                 }
 
-                e.target.value = value;
-              });
+                function closeModalAdicionar() {
+                  modalAdicionar.classList.add("hidden");
+                  modalAdicionar.classList.remove("flex");
+                  modalAdicionar.querySelectorAll("input").forEach(input => input.value = ""); // limpa os campos
+                }
 
-              // CVV (3 ou 4 dígitos)
-              const cardCvv = document.getElementById('card-cvv');
+                // fechar clicando fora
+                modalAdicionar.addEventListener("click", (e) => {
+                  if (e.target === modalAdicionar) {
+                    
+                    closeModal();
+                  }
+                });
 
-              cardCvv.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
+                const modalDeletar = document.getElementById("modalDeletar");
 
-                // limita a 4 (alguns cartões usam 4)
-                value = value.substring(0, 4);
+                function openModalDeletar() {
+                  modalDeletar.classList.remove("hidden");
+                  modalDeletar.classList.add("flex");
+                }
 
-                e.target.value = value;
-              });
-          </script>
-        </div>
-      </main>
-    </body>
-  </html>
+                function closeModalDeletar() {
+                  modalDeletar.classList.add("hidden");
+                  modalDeletar.classList.remove("flex");
+                  modalDeletar.querySelectorAll("input").forEach(input => input.value = ""); // limpa os campos
+                }
+
+                // fechar clicando fora
+                modalDeletar.addEventListener("click", (e) => {
+                  if (e.target === modalDeletar) {
+                    
+                    closeModalDeletar();
+                  }
+                });
+
+                // CARTÃO (0000 0000 0000 0000)
+                const cardNumber = document.getElementById('card-number');
+
+                cardNumber.addEventListener('input', (e) => {
+                  let value = e.target.value.replace(/\D/g, ''); // só números
+
+                  // limita a 16 dígitos (padrão real)
+                  value = value.substring(0, 16);
+
+                  // adiciona espaços a cada 4 números
+                  value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+
+                  e.target.value = value;
+                });
+
+                // VALIDADE (MM/AA)
+                const cardExp = document.getElementById('card-exp');
+
+                cardExp.addEventListener('input', (e) => {
+                  let value = e.target.value.replace(/\D/g, '');
+
+                  // limita a 4 números
+                  value = value.substring(0, 4);
+
+                  // adiciona /
+                  if (value.length > 2) {
+                    value = value.replace(/(\d{2})(\d+)/, '$1/$2');
+                  }
+
+                  e.target.value = value;
+                });
+
+                // CVV (3 ou 4 dígitos)
+                const cardCvv = document.getElementById('card-cvv');
+
+                cardCvv.addEventListener('input', (e) => {
+                  let value = e.target.value.replace(/\D/g, '');
+
+                  // limita a 4 (alguns cartões usam 4)
+                  value = value.substring(0, 4);
+
+                  e.target.value = value;
+                });
+            </script>
+          </div>
+        </main>
+      </body>
+    </html>
