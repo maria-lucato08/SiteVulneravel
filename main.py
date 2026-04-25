@@ -5,4 +5,4 @@ app = Flask(__name__) # inicializando o flask; name é usado para identificar e 
 
 all_configs(app) # passando app como parâmento #    
 
-app.run(debug=True) # rodando o flask em modo debug para não precisar reiniciar o servidor a cada alteração #
+app.run(host="0.0.0.0", port=5000, debug=True) # rodando o flask em modo debug para não precisar reiniciar o servidor a cada alteração #
