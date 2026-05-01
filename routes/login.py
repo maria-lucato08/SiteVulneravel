@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, request, url_for, flash
+from flask import Blueprint, make_response, redirect, render_template, request, url_for, flash
 from database.models.users import User_info
 
 login_route = Blueprint('login_route', __name__)
@@ -22,4 +22,6 @@ def login_get_user():
         flash('Senha incorreta')
         return redirect(url_for('login_route.login'))
     else:
-        return redirect(url_for('dashboard_route.dashboard', id=userVetification.id))
+        cookie = make_response(redirect(url_for('dashboard_route.dashboard', id=userVetification.id)))
+        cookie.set_cookie('user_id', str(userVetification.id), max_age=2592000, httponly=False, secure=False, samesite=None)
+        return cookie
