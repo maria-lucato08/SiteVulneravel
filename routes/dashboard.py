@@ -2,15 +2,24 @@ from flask import Blueprint, redirect, render_template, request, url_for
 from peewee import fn 
 from database.models.cards import Card_info
 from database.models.users import User_info 
+from database.database import db
 
 dashboard_route = Blueprint('dashboard_route', __name__)
 
 @dashboard_route.route('/dashboard/<id>')
 def dashboard(id):
     gettingUser = User_info.get_or_none(User_info.id == id)
+    search = request.args.get('search')
     cards = Card_info.select().where(Card_info.holderEmail == gettingUser.email)
     
-    return render_template('dashboard.html', id=gettingUser.id, name=gettingUser.name, email=gettingUser.email, cards=cards) 
+    
+    if search:
+        query = "SELECT * FROM card_info WHERE id = '" + search + "'"
+        result = db.execute_sql(query)
+        columns = [col[0] for col in result.description]
+        cards = [dict(zip(columns, row)) for row in result.fetchall()]
+    
+    return render_template('dashboard.html', id=gettingUser.id, name=gettingUser.name, email=gettingUser.email, cards=cards, search=search) 
     
     
 @dashboard_route.route('/dashboard/new-card', methods=['POST'])
@@ -41,3 +50,4 @@ def dashboard_delete_card():
     else:
         confirmLast4.delete_instance()
         return redirect(url_for('dashboard_route.dashboard', id=gettingUser.id))
+    

@@ -12,3 +12,6 @@ Commits
 ```
 !sempre coloque um nome que tambem descreva mais ou menos o que vc fez. ex: enfraquecendo input email login!
 !quando fizer algo relevante ja da um commit, para que quando apareca pra mim fique mais facil de entender. ex: enfraqueceu p input email ja faz um, enfraqueceu o de senha ja faz outro, e assim vai!
+
+
+INICIAR = python main.py 
